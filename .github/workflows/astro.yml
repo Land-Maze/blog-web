@@ -56,7 +56,7 @@ jobs:
         with:
           node-version: "18"
           cache: pnpm
-          cache-dependency-path: ${{ env.BUILD_PATH }}/package-lock.json
+          cache-dependency-path: ${{ env.BUILD_PATH }}/pnpm-lock.yaml
         
       - name: Setup Pages
         id: pages
