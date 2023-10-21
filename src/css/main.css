@@ -1,0 +1,12 @@
+a {text-decoration: none;}
+body{
+    background-color: var(--color-background);
+    color: var(--color-primary);
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    margin: 0;
+    padding: 0;
+}
+hr{
+    width: 80%;
+}

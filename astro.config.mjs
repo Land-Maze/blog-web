@@ -2,5 +2,5 @@ import { defineConfig } from 'astro/config';
 
 // https://astro.build/config
 export default defineConfig({
-    site: 'https://land-maze.github.io',
+    site: 'https://landmaze.me',
 });

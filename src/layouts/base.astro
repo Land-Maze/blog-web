@@ -1,0 +1,28 @@
+---
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+const { title } = Astro.props;
+import "../css/_variables.css";
+import "../css/main.css";
+---
+
+<html lang="en-US">
+    <head>
+        <title>{title}</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Roboto Mono">
+    </head>
+
+    <body>
+
+        <Header />
+
+        <hr />
+
+        <slot />
+
+        <Footer />
+        
+    </body>
+</html>
