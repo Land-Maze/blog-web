@@ -1,6 +1,8 @@
 :root{
     --color-primary: #f9f9f9;
     --color-background: #332F2A;
+    --color-dimmer-background: #2A2722;
     --color-link: #f3cca3;
     --color-link-hover: #ba821a;
+    --footer-height: 2rem;
 }

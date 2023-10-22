@@ -1,0 +1,18 @@
+footer{
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    height: var(--footer-height);
+    background-color: var(--color-dimmer-background);
+    color: var(--color-link);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: 'Roboto Mono', monospace;
+    padding: 0 1rem;
+    text-align: center;
+    box-shadow: 0 0 2px #ccc;
+
+}
