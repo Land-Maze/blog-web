@@ -1,10 +1,23 @@
 ---
-const { title, url, description, image } = Astro.props;
+export interface Props {
+    title: string;
+    url: string;
+    description: string;
+    date: Date;
+    tags: string[];
+}
+const { title, url, description, date, tags } = Astro.props;
 import "../css/Post.css"
 ---
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Martian Mono" />
 <div class="post-block">
-    <div>
+    <a href={ url }>
         <h1>{ title }</h1>
-        <p>URL: <a href={url}> авава</a></p>
+    </a>
+    <span class="post-description">{ description }</span>
+
+    <div class="post-info">
+        <p class="post-date">{ `${date.getDate()}-${date.getMonth()}-${date.getFullYear()}` }</p>
+        <span class="tags">{tags.map((tag, index, arr)=> {return (arr[arr.length-1]===tag?tag: `${tag} - `)})}</span>
     </div>
 </div>

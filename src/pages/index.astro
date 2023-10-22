@@ -11,7 +11,7 @@ const posts = await getCollection("posts");
     <div id="grid-posts">
         {
             posts.map((post) => (
-                <Post url={`/posts/${post.slug}`} title={post.data.title} />
+                <Post url={`/posts/${post.slug}`} title={post.data.title} date={post.data.pubDate} description={post.data.description} tags={post.data.tags}/>
             ))
         }
 

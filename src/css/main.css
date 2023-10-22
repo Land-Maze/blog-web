@@ -1,4 +1,4 @@
-a {text-decoration: none;}
+a {text-decoration: none; color: aliceblue;}
 body{
     background-color: var(--color-background);
     color: var(--color-primary);
