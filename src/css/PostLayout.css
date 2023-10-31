@@ -10,6 +10,7 @@ article h1 {
     padding: 0;
     text-align: center;
     color: var(--color-secondary);
+    margin: 0.5em 0;
 }
 
 /* ------------------ */
@@ -21,6 +22,7 @@ article h2 {
     padding: 0;
     color: var(--color-third);
     font-weight: bold !important;
+    margin: 0.35em 0;
 }
 article h2::before{
     /* content: "\2003\2003\2003\2003"; */
@@ -42,6 +44,7 @@ article p{
 article .post-text{
     background-color: var(--color-background-brighter);
     padding: 1rem;
+    border-radius: 25px;
 }
 
 article .post-text pre{
@@ -53,3 +56,44 @@ strong{
     font-weight: bold;
 }
 /* ------------------ */
+
+div.copy-button{
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-image: url(../assets/icons/copy.png);
+    background-size: cover;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    margin-left: 5px;
+}
+div.copy-button:hover{
+    transform: scale(1.1);
+    /* transform: rotate(360deg); */
+    filter: invert(100%);
+}
+div.copy-button::after {
+    content: "Copy";
+    position: absolute;
+    display: none;
+    background-color: var(--color-dimmer-background);
+    color: #fff;
+    padding: 5px;
+    border-radius: 5px;
+    top: 100%;
+    left: 50%;
+    /* transform: translateX(-50%); */
+    white-space: nowrap; /* Prevents the text from wrapping */
+}
+
+div.copy-button:hover::after {
+    display: block;
+}
+
+.balloon{
+    position: absolute;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: var(--color-dimmer-background);
+    transition: all 0.2s ease-in-out;
+}

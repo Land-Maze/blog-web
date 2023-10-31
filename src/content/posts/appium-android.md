@@ -14,12 +14,16 @@ tags: ['appium', 'webdriverio', 'android', 'scrapping']
 ## First of all, we need to install appium server
 <div class="post-text">
 
-It can be installed from pnpm or npm:
+### It can be installed from pnpm or npm: <div class="copy-button" language="bash"></div>
+
 ```bash
 $ pnpm add -g appium
 ```
 
-To check if it is installed, run appium -v command.
+### To check if it is installed, run:
+```bash
+appium -v command.
+```
 </div>
 
 ## Then driver must be installed
