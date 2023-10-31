@@ -1,38 +1,43 @@
 .post-block{
-    width: 300px;
-    height: 300px;
+    width: 80%;
+    min-height: 300px;
+
 
     font-size: 0.8em;
     font-weight: 400;
     line-height: 2em;
     text-align: justify;
-    text-justify: inter-word;
+    word-break: normal;
+    overflow-wrap: normal;
 
     margin: 10px;
     padding: 10px;
     border-radius: 5px;
     box-shadow: 0 0 2px #ccc;
-    word-wrap: break-word;
-    word-break: break-all;
     overflow: hidden;
     transition: all 0.3s ease-in-out;
 
-    font-family: "Ubuntu Mono", monospace;
+    font-family: "Arial", sans-serif;
 
     background-color: var(--color-background-brighter);
     color: var(--color-link);
 
     display: flex;
     flex-flow: column;
-    justify-content: space-between;
-    align-items: center;
 }
-.post-block > h1{
-    color: aliceblue; 
+.post-block h1{
     text-decoration: underline; 
     font-family: "Martian Mono", monospace;
     white-space: pre-wrap;
     line-height: 1.5em;
+    font-weight: 300 !important;
+    text-align: center;
+}
+.post-description{
+    font-size: 1.5rem;
+    font-weight: 300;
+    line-height: 1.5em;
+    color: var(--color-fourth);
 }
 .post-info{
     width: 100%;
@@ -40,5 +45,30 @@
     flex-flow: row;
     justify-content: space-between;
     align-items: center;
-    font-size: 10px;
+    color: rgba(240, 248, 255, 0.468);
+    text-align: center;
+    font-size: 0.8em;
+}
+.post-block .post-info-container{
+    height: 100%;
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+}
+.post-block .left-side-post-info{
+    height: 100%;
+    display: flex;
+    flex-flow: column;
+    margin: 0 2rem;
+}
+.post-block .left-side-post-info img{
+    width: 150px;
+    height: 150px;
+}
+.post-block .left-side-post-info .image-description{
+    color: rgba(240, 248, 255, 0.468);
+    text-align: center;
+    font-size: 0.8em;
+}
+.post-block .right-side-post-info{
 }
