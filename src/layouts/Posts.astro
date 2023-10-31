@@ -4,6 +4,7 @@ import Footer from "../components/Footer.astro";
 const { title } = Astro.props;
 import "../css/_variables.css";
 import "../css/main.css";
+import "../css/PostLayout.css"
 ---
 
 <html lang="en-US">
@@ -20,7 +21,9 @@ import "../css/main.css";
 
         <hr />
 
-        <slot style="margin-bottom: var(--footer-height);" />
+        <article>
+            <slot style="margin-bottom: var(--footer-height);" />
+        </article>
 
         <Footer />
         

@@ -1,0 +1,24 @@
+article{
+    padding: 50px;
+    color: var(--color-primary);
+    padding: 30px 100px;
+}
+article h1 {
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    color: var(--color-secondary);
+}
+article h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0;
+    padding: 0;
+    color: var(--color-secondary);
+    text-align: center;
+}
+article h2::before{
+    /* content: "\2003\2003\2003\2003"; */
+}

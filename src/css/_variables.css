@@ -1,7 +1,9 @@
 :root{
     --color-primary: #f9f9f9;
     --color-secondary: #f3cca3;
+    --color-third: #9ECBFF;
     --color-background: #292A33;
+    --color-background-brighter: #31323d;
     --color-secondary-background: #332F2A;
     --color-dimmer-background: #2A2722;
     --color-link: #f3cca3;

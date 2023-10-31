@@ -19,7 +19,7 @@
 
     font-family: "Ubuntu Mono", monospace;
 
-    background-color: var(--color-secondary-background);
+    background-color: var(--color-background-brighter);
     color: var(--color-link);
 
     display: flex;

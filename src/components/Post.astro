@@ -3,7 +3,7 @@ export interface Props {
     title: string;
     url: string;
     description: string;
-    date: Date;
+    date?: Date;
     tags: string[];
 }
 const { title, url, description, date, tags } = Astro.props;
@@ -17,7 +17,7 @@ import "../css/Post.css"
     <span class="post-description">{ description }</span>
 
     <div class="post-info">
-        <p class="post-date">{ `${date.getDate()}-${date.getMonth()}-${date.getFullYear()}` }</p>
+        <p class="post-date">{ `${date?.getDate()}-${date?.getMonth()}-${date?.getFullYear()}` }</p>
         <span class="tags">{tags.map((tag, index, arr)=> {return (arr[arr.length-1]===tag?tag: `${tag} - `)})}</span>
     </div>
 </div>

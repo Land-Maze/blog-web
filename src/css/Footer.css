@@ -1,6 +1,6 @@
 footer{
-    position: absolute;
-    bottom: 0px;
+    position: fixed;
+    bottom: 0;
     width: 100%;
     height: var(--footer-height);
     background-color: var(--color-dimmer-background);

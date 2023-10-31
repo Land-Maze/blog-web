@@ -13,7 +13,18 @@ const posts = await getCollection("posts");
             posts.map((post) => (
                 <Post url={`/posts/${post.slug}`} title={post.data.title} date={post.data.pubDate} description={post.data.description} tags={post.data.tags}/>
             ))
+            
         }
+<Post url="/posts/first-post" title="First Post" description="This is my first post" tags={["first", "post"]} />
+<Post url="/posts/first-post" title="First Post" description="This is my first post" tags={["first", "post"]} />
+<Post url="/posts/first-post" title="First Post" description="This is my first post" tags={["first", "post"]} />
+<Post url="/posts/first-post" title="First Post" description="This is my first post" tags={["first", "post"]} />
+<Post url="/posts/first-post" title="First Post" description="This is my first post" tags={["first", "post"]} />
+<Post url="/posts/first-post" title="First Post" description="This is my first post" tags={["first", "post"]} />
+<Post url="/posts/first-post" title="First Post" description="This is my first post" tags={["first", "post"]} />
+<Post url="/posts/first-post" title="First Post" description="This is my first post" tags={["first", "post"]} />
+<Post url="/posts/first-post" title="First Post" description="This is my first post" tags={["first", "post"]} />
+<Post url="/posts/first-post" title="First Post" description="This is my first post" tags={["first", "post"]} />
 
     </div>
 </Base>
