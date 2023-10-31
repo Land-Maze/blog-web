@@ -96,4 +96,5 @@ div.copy-button:hover::after {
     border-radius: 5px;
     background-color: var(--color-dimmer-background);
     transition: all 0.2s ease-in-out;
+    user-select: none;
 }
