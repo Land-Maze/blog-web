@@ -11,13 +11,19 @@ tags: ['appium', 'webdriverio', 'android', 'scrapping']
 
 # Setup
 
-## First of all, we need to install appium server.
+## First of all, we need to install appium server
+<div class="post-text">
 
-It can be installed from pnpm or npm (e.g `pnpm add -g appium`).
+It can be installed from pnpm or npm:
+```bash
+$ pnpm add -g appium
+```
 
 To check if it is installed, run appium -v command.
+</div>
 
-## Then driver must be installed. 
+## Then driver must be installed
+<div class="post-text">
 Because my project was intend to scrap from android, I will use "uiautomator2".
 
 <b>Before an installation, all environmental variables must be settled.</b>
@@ -41,15 +47,19 @@ Driver uiautomator2@2.29.3 successfully installed
 - automationName: UiAutomator2
 - platformNames: ["Android"]
 
+</div>
 
 ## Installing android emulator
+<div class="post-text">
 
 I used android emulator from Android Studio. It can be installed from [here](https://developer.android.com/studio).
 
 After installation, you can create a new virtual device. I used Pixel 7 Pro with API 34 with arm64 architecture (I'm on M1). But you can use any device you want if API level is 30 or higher.
 [How to create a virtual device](https://developer.android.com/studio/run/managing-avds)
+</div>
 
 ## Installing adb
+<div class="post-text">
 
 Adb is a tool that allows you to connect to your android device or emulator. It can be installed with brew install android-platform-tools.
 
@@ -63,23 +73,28 @@ It means that you have successfully installed adb and connected to your emulator
 
 And if there's no devices, check if your emulator is running.
 
+</div>
 
 # Creating a project
 
-Create a new folder and run npm init command.
-bash
+<div class="post-text">
+
+### Create a new folder and run npm init command.
+
+```bash
 $ mkdir android-scrapper
 $ cd android-scrapper
 $ npm init -y
+```
 
-
-Then install all dependencies:
-bash
+### Then install all dependencies:
+```bash
 $ npm install --save-dev webdriverio @types/node ts-node typescript
+```
 
+### Create a new file __tsconfig.json__ and paste this:
 
-Create a new file tsconfig.json and paste this:
-json
+```json
 {
   "compilerOptions": {
     "target": "es6",
@@ -92,7 +107,7 @@ json
     }
   }
 }
-
+```
 
 And in package.json file, add this:
 json

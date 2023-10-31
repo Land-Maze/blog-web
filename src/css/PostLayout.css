@@ -11,14 +11,45 @@ article h1 {
     text-align: center;
     color: var(--color-secondary);
 }
+
+/* ------------------ */
+
 article h2 {
     font-size: 1.5rem;
     font-weight: 600;
     margin: 0;
     padding: 0;
-    color: var(--color-secondary);
-    text-align: center;
+    color: var(--color-third);
+    font-weight: bold !important;
 }
 article h2::before{
     /* content: "\2003\2003\2003\2003"; */
 }
+article h2::after{
+    content: ":";
+}
+
+/* ------------------ */
+
+article p{
+    font-size: 1rem;
+    font-weight: 100;
+    line-height: 1em;
+    color: var(--color-primary);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+}
+article .post-text{
+    background-color: var(--color-background-brighter);
+    padding: 1rem;
+}
+
+article .post-text pre{
+    padding: 10px;
+    border: 0.1px dotted var(--color-secondary);
+}
+strong{
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+}
+/* ------------------ */
