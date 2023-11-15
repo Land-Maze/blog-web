@@ -1,4 +1,3 @@
-// Get all the copy button divs
 const copyButtons = document.querySelectorAll(".copy-button");
 
 // Loop through each copy button div and add a click event listener

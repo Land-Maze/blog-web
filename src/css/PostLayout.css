@@ -2,6 +2,7 @@ article{
     padding: 50px;
     color: var(--color-primary);
     padding: 30px 100px;
+    font-size: 20px;
 }
 article h1 {
     font-size: 2.5rem;
@@ -39,7 +40,8 @@ article p{
     line-height: 1em;
     color: var(--color-primary);
     font-family: 'Montserrat', sans-serif;
-    font-weight: 300;
+    font-weight: 100;
+    font-size: 1.2rem;
 }
 article .post-text{
     background-color: var(--color-background-brighter);
@@ -97,4 +99,11 @@ div.copy-button:hover::after {
     background-color: var(--color-dimmer-background);
     transition: all 0.2s ease-in-out;
     user-select: none;
+}
+
+article > hr{
+    margin: 20px 0;
+    display: block;
+    border: 0;
+    border-top: 1px solid var(--color-secondary);
 }

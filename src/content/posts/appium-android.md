@@ -20,11 +20,14 @@ tags: ['appium', 'webdriverio', 'android', 'scrapping']
 $ pnpm add -g appium
 ```
 
+
 ### To check if it is installed, run:<div class="copy-button" language="bash"></div>
 ```bash
 $ appium -v command
 ```
 </div>
+
+<hr>
 
 ## Then driver must be installed
 <div class="post-text">
@@ -53,6 +56,8 @@ Driver uiautomator2@2.29.3 successfully installed
 
 </div>
 
+<hr>
+
 ## Installing android emulator
 <div class="post-text">
 
@@ -61,6 +66,8 @@ I used android emulator from Android Studio. It can be installed from [here](htt
 After installation, you can create a new virtual device. I used Pixel 7 Pro with API 34 with arm64 architecture (I'm on M1). But you can use any device you want if API level is 30 or higher.
 [How to create a virtual device](https://developer.android.com/studio/run/managing-avds)
 </div>
+
+<hr>
 
 ## Installing adb
 <div class="post-text">
@@ -162,6 +169,8 @@ const wdOpts = {
   logLevel: 'info',
   capabilities,
 };
+
+<hr>
 
 ## Let's talk more about capabilities
 ### appium:appPackage - Is a package name of your app. You can find it with
