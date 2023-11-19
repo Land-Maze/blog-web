@@ -69,3 +69,12 @@ img{
 }
 
 /* ------------------- */
+
+@media screen and (max-width: 600px){
+    nav{
+    width: 100vw !important;
+    }
+    #links a{
+        font-size: 0.8rem !important;
+    }
+}

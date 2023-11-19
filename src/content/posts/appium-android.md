@@ -23,7 +23,7 @@ $ pnpm add -g appium
 
 ### To check if it is installed, run:<div class="copy-button" language="bash"></div>
 ```bash
-$ appium -v command
+$ appium -v
 ```
 </div>
 

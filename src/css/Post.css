@@ -1,6 +1,6 @@
 .post-block{
     width: 80%;
-    min-height: 300px;
+    min-height: 250px;
 
 
     font-size: 0.8em;
@@ -38,7 +38,7 @@
     font-size: 1.5rem;
     font-weight: 300;
     line-height: 1.5em;
-    color: var(--color-fourth);
+    color: var(--color-primary);
 }
 .post-info{
     width: 100%;
@@ -48,6 +48,12 @@
     align-items: center;
     color: rgba(240, 248, 255, 0.468);
     text-align: center;
+}
+.post-block > a{
+    color: var(--color-link) !important;
+}
+.post-block > a:hover{
+    color: var(--color-link-hover) !important;
 }
 .post-block .post-info-container{
     height: 100%;
@@ -72,4 +78,13 @@
 }
 .post-block .right-side-post-info{
     padding: 0 3rem;
+}
+/* Media for phone*/
+@media only screen and (max-width: 600px) {
+    .left-side-post-info{
+        display: none !important;
+    }
+    .post-description{
+        font-size: 1.2rem;
+    }
 }
