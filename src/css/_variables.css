@@ -3,6 +3,7 @@
     --color-secondary: #f3cca3;
     --color-third: #9ECBFF;
     --color-fourth: #f4aa5b;
+    --color-code: var(--color-third);
     --color-background: #292A33;
     --color-background-brighter: #31323d;
     --color-secondary-background: #332F2A;

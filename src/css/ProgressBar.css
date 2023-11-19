@@ -1,0 +1,11 @@
+#progress-bar{
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    width: 100%;
+    height: 5px;
+    padding: 5px 0;
+}
+#progress-bar > hr#progress-bar-liner{
+    border: 1.5px var(--color-fourth) solid;
+}

@@ -35,25 +35,31 @@ Because my project was intend to scrap from android, I will use "uiautomator2".
 
 <b>Before an installation, all environmental variables must be settled.</b>
 
-Write this in your <i>.zshrc</i> or <i>.bashrc</i> file:
-bash
-...
+### Write this (change value) in your <i>.zshrc</i> or <i>.bashrc</i> file:<div class="copy-button" language="bash"></div>
+```bash
 export ANDROID_SDK_ROOT="/Users/land_maze/Library/Android/sdk"
 export JAVA_HOME="/opt/homebrew/opt/openjdk/"
-
+```
 
 ANDROID_SDK_ROOT is a path to your android sdk folder. It can be found in Android Studio -> Preferences -> Appearance & Behavior -> System Settings -> Android SDK -> Android SDK Location
 
-JAVA_HOME is a path to your java home folder. If you don't have java installed, you can install it with brew install openjdk. Then you can find it with whereis java command.
-
-After that, you can source your file with source ~/.zshrc or source ~/.bashrc.
+JAVA_HOME is a path to your java home folder. 
+### If you don't have java installed, you can install it with<div class="copy-button" language="bash"></div>
+``` bash
+brew install openjdk
+```
+Then you can find it with `whereis java` command.
+After that, you can source your file with `source ~/.zshrc` or `source ~/.bashrc`.
 
 Now you can install driver with appium driver install uiautomator2, and in result you should expect something like this:
-bash
+```bash
+$ appium driver install uiautomator2
+...
+...
 Driver uiautomator2@2.29.3 successfully installed
 - automationName: UiAutomator2
 - platformNames: ["Android"]
-
+```
 </div>
 
 <hr>
@@ -103,9 +109,9 @@ $ npm init -y
 $ npm install --save-dev webdriverio @types/node ts-node typescript
 ```
 
-### Create a new file __tsconfig.json__ and paste this:
-
+### Create a new file __tsconfig.json__ and paste this:<div class="copy-button" language="bash"></div>
 ```json
+// Path: root_of_your_project/tsconfig.json
 {
   "compilerOptions": {
     "target": "es6",
@@ -120,21 +126,22 @@ $ npm install --save-dev webdriverio @types/node ts-node typescript
 }
 ```
 
-And in package.json file, add this:
-json
-...
+### And in __package.json__ file, add this:<div class="copy-button" language="bash"></div>
+```json
 {
   "scripts": {
     "start": "ts-node ./src/index.ts",
     "build": "tsc"
   },
 }
-...
+```
 
 
-Now you can create a new folder src and create a new file index.ts in it.
+Now you can create a new folder src and create a new file `index.ts` in it.
+</div>
 
 # Writing a code
+<div class="post-text">
 
 First of all, we need to import all necessary libraries:
 ```typescript
@@ -143,18 +150,23 @@ import { remote } from 'webdriverio';
 
 Then we need to create a new function that will be our main function:
 ```typescript
+// Path: root_of_your_project/src/index.ts
+
 async function main(){
 
     return 0;
 }
 main().catch(console.error).then(console.log);
 ```
+</div>
 
+## Now we need to define opts and capabilities. 
+<div class="post-text">
+Opts is a configuration for our driver. Capabilities is a configuration for our device.
 
----
+```typescript
+// Path: root_of_your_project/src/index.ts
 
-Now we need to define opts and capabilities. Opts is a configuration for our driver. Capabilities is a configuration for our device.
-typescript
 const capabilities = {
   platformName: 'Android',
   'appium:automationName': 'UiAutomator2',
@@ -169,10 +181,13 @@ const wdOpts = {
   logLevel: 'info',
   capabilities,
 };
-
+```
 <hr>
+</div>
 
 ## Let's talk more about capabilities
+<div class="post-text">
+
 ### appium:appPackage - Is a package name of your app. You can find it with
 ```bash
 $ adb shell pm list packages
@@ -181,20 +196,24 @@ package:com.google.android.configupdater
 package:ua.avrora.app
 package:com.google.android.gms.supervision
 ...
+```
 
 Or if you know how your app looks like, you can find it with
 ```bash
 $ adb shell pm list packages | grep avrora
 
 package:ua.avrora.app
-
+```
 
 ---
 
-### appium:appActivity - Is an activity name of your app. Basically, it is a name of the screen that you want to open. You can find it with inside of apk of app. It can be found inside of AndroidManifest.xml file. You can download pure apk file from external websites like [apkpure.com](https://apkpure.com/).
+### appium:appActivity - Is an activity name of your app. 
+Basically, it is a name of the screen that you want to open. You can find it with inside of apk of app. It can be found inside of AndroidManifest.xml file. 
 
-You can open apk file with Android Studio. Then you can find AndroidManifest.xml file. And inside of it, you can find something like this:
-xml
+You can download pure apk file from external websites like [apkpure.com](https://apkpure.com/).
+
+You can open apk file with Android Studio. Then you can find `AndroidManifest.xml` file. And inside of it, you can find something like this:
+```xml
 <?xml version="1.0" encoding="utf-8"?>
 <manifest
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -212,11 +231,13 @@ xml
 
     <uses-permission
         android:name="android.permission.INTERNET" />
-
 ...
+```
 
-Inside of <manifest> tag, you can find <activity> tag. And inside of it, you can find android:name attribute. This is your activity name. But we need to find activity with android.intent.action.MAIN and android.intent.category.LAUNCHER actions. It can be found inside of <intent-filter> tag. So, in my case, it looks like this:
-xml
+Inside of ___\<manifest>___ tag, you can find ___\<activity>___ tag. And inside of it, you can find android:name attribute. This is your activity name. But we need to find activity with ___android.intent.action.MAIN___ and ___android.intent.category.LAUNCHER___ actions. 
+It can be found inside of ___\<intent-filter>___ tag. So, in my case, it looks like this:
+```xml
+...
 <activity
             android:theme="@ref/0x7f1000c0"
             android:label="@ref/0x7f0f003d"
@@ -236,8 +257,10 @@ xml
                     android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+...
+```
 
-We can see that android:name attribute is ua.avrora.app.Activities.ShowcaseActivity. So, we can use it as our appium:appActivity capability.
+We can see that android:name attribute is ___ua.avrora.app.Activities.ShowcaseActivity___. So, we can use it as our appium:appActivity capability.
 
 ## Back to our code
 Now we can create a new driver with remote function:

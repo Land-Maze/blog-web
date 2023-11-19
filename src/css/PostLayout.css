@@ -107,3 +107,17 @@ article > hr{
     border: 0;
     border-top: 1px solid var(--color-secondary);
 }
+
+article p> code{
+    background-color: var(--color-dimmer-background);
+    padding: 0 5px;
+    border-radius: 5px;
+    border: 1px solid var(--color-secondary);
+    font-family: 'Courier New', Courier, monospace;
+    /* font-weight: bold; */
+    font-size: 1.2rem;
+    color: var(--color-code);
+}
+a{
+    color: var(--color-link);
+}
