@@ -145,6 +145,8 @@ Now you can create a new folder src and create a new file `index.ts` in it.
 
 First of all, we need to import all necessary libraries:
 ```typescript
+// Path: root_of_your_project/src/index.ts
+
 import { remote } from 'webdriverio';
 ```
 
@@ -159,6 +161,8 @@ async function main(){
 main().catch(console.error).then(console.log);
 ```
 </div>
+
+---
 
 ## Now we need to define opts and capabilities. 
 <div class="post-text">
@@ -182,8 +186,9 @@ const wdOpts = {
   capabilities,
 };
 ```
-<hr>
 </div>
+
+---
 
 ## Let's talk more about capabilities
 <div class="post-text">
@@ -208,7 +213,7 @@ package:ua.avrora.app
 ---
 
 ### appium:appActivity - Is an activity name of your app. 
-Basically, it is a name of the screen that you want to open. You can find it with inside of apk of app. It can be found inside of AndroidManifest.xml file. 
+Basically, it is a name of the screen that you want to open. You can find it with inside of apk of app. It can be found inside of `AndroidManifest.xml` file. 
 
 You can download pure apk file from external websites like [apkpure.com](https://apkpure.com/).
 
@@ -231,69 +236,86 @@ You can open apk file with Android Studio. Then you can find `AndroidManifest.xm
 
     <uses-permission
         android:name="android.permission.INTERNET" />
-...
+<!-- ... -->
 ```
 
-Inside of ___\<manifest>___ tag, you can find ___\<activity>___ tag. And inside of it, you can find android:name attribute. This is your activity name. But we need to find activity with ___android.intent.action.MAIN___ and ___android.intent.category.LAUNCHER___ actions. 
-It can be found inside of ___\<intent-filter>___ tag. So, in my case, it looks like this:
+Inside of `<manifest>` tag, you can find `<activity>` tag. And inside of it, you can find android:name attribute. This is your activity name. But we need to find activity with `android.intent.action.MAIN` and `android.intent.category.LAUNCHER` actions. 
+It can be found inside of `<intent-filter>` tag. So, in my case, it looks like this:
 ```xml
-...
+<!-- ... -->
 <activity
-            android:theme="@ref/0x7f1000c0"
-            android:label="@ref/0x7f0f003d"
-            android:name="ua.avrora.app.Activities.ShowcaseActivity"
-            android:exported="true"
-            android:launchMode="1"
-            android:screenOrientation="1"
-            android:configChanges="0x80"
-            android:windowSoftInputMode="0x12">
+  android:theme="@ref/0x7f1000c0"
+  android:label="@ref/0x7f0f003d"
+  android:name="ua.avrora.app.Activities.ShowcaseActivity"
+  android:exported="true"
+  android:launchMode="1"
+  android:screenOrientation="1"
+  android:configChanges="0x80"
+  android:windowSoftInputMode="0x12">
 
-            <intent-filter>
+  <intent-filter>
 
-                <action
-                    android:name="android.intent.action.MAIN" />
+      <action
+          android:name="android.intent.action.MAIN" />
 
-                <category
-                    android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-...
+      <category
+          android:name="android.intent.category.LAUNCHER" />
+  </intent-filter>
+</activity>
+<!-- ... -->
 ```
 
-We can see that android:name attribute is ___ua.avrora.app.Activities.ShowcaseActivity___. So, we can use it as our appium:appActivity capability.
-
-## Back to our code
-Now we can create a new driver with remote function:
-typescript
-const driver = await remote(wdOpts);
-
-In our wdOpts, we have hostname and port of our appium server. We can use localhost as hostname and 4723 as port. But if you want to use another hostname or port, you can set it in environment variables APPIUM_HOST and APPIUM_PORT.
+We can see that `android:name` attribute is `ua.avrora.app.Activities.ShowcaseActivity`. So, we can use it as our `appium:appActivity` capability.
+</div>
 
 ---
 
-Now we can use our driver to do something. For example, we can click on a button with driver.click() function. But we need to find this button first. We can do it with driver.$() function. It is a function that finds an element by selector. In our case, we can use driver.$('~button') to find a button with accessibilityLabel attribute equals to button. You can find more information about selectors [here](https://webdriver.io/docs/selectors.html).
+## Back to our code
+<div class="post-text">
+Now we can create a new driver with remote function:
+
+```typescript
+const driver = await remote(wdOpts);
+```
+
+In our `wdOpts`, we have hostname and port of our appium server. We can use localhost as hostname and 4723 as port. But if you want to use another hostname or port, you can set it in environment variables `APPIUM_HOST` and `APPIUM_PORT`.
+
+---
+
+Now we can use our driver to do something. For example, we can click on a button with driver.`click()` function. But we need to find this button first. We can do it with `driver.$()` function. It is a function that finds an element by selector. In our case, we can use `driver.$('~button')` to find a button with accessibilityLabel attribute equals to button. You can find more information about selectors [here](https://webdriver.io/docs/selectors.html).
 
 In my case, I know that in first screen I see a licence agreement. And I need to click on Accept button. So, I can use this code:
-typescript
-...
-
+```typescript
+// ...
 try {
-    const batteryItem = await driver.$('//*[@text="Згоден"]');
-    await batteryItem.click();
+    const acceptButton = await driver.$('//*[@text="Згоден"]');
+    await acceptButton.click();
   } finally {
     await driver.pause(1000);
     await driver.deleteSession();
   }
+// ...
+```
+In this code, I use `driver.$()` function to find an element with text attribute equals to Згоден. And then I click on it with `click()` function. Wait for 1 second to finish animation and close the session with `deleteSession()` function.
+</div>
 
-...
-
-In this code, I use driver.$() function to find an element with text attribute equals to Згоден. And then I click on it with click() function. Wait for 1 second to finish animation and close the session with deleteSession() function.
+---
 
 ## Run the code
-Now we can run our code with npm start command. And we can see that our code works. But we can see that our code is not finished. It's more up to you to finish it. You can find more information about webdriverio [here](https://webdriver.io/docs/gettingstarted.html).
+<div class="post-text">
+
+Now we can run our code with `npm start` command. And we can see, our code works. But we can see that our code is not finished. It's more up to you HOW to finish it.
+
+#### You can find more information about webdriverio [here](https://webdriver.io/docs/gettingstarted.html).
+
+</div>
+
+# I hope this tutorial was helpful for you. 
+<div class="post-text">
 
 
-# The end
-I hope this tutorial was helpful for you. If you have any questions, you can ask me in [telegram](https://t.me/Land_Maze).
+#### If you have any questions or proposition, you can ask me in [telegram](https://t.me/Land_Maze) @Land_Maze.
 
 ### The code will be available [here](https://github.com/LandMaze/appium-avrora-scrapper).
+
+</div>

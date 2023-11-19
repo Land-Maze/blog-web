@@ -2,6 +2,7 @@ article{
     padding: 50px;
     color: var(--color-primary);
     padding: 30px 100px;
+    padding-bottom: 70px;
     font-size: 20px;
 }
 article h1 {
@@ -25,11 +26,14 @@ article h2 {
     font-weight: bold !important;
     margin: 0.35em 0;
 }
-article h2::before{
-    /* content: "\2003\2003\2003\2003"; */
-}
+/* article h2::before{
+    content: "\2003\2003\2003\2003";
+}*/
 article h2::after{
     content: ":";
+}
+article h3::before{
+    content: "---> ";
 }
 
 /* ------------------ */
@@ -37,7 +41,7 @@ article h2::after{
 article p{
     font-size: 1rem;
     font-weight: 100;
-    line-height: 1em;
+    line-height: 1.5em;
     color: var(--color-primary);
     font-family: 'Montserrat', sans-serif;
     font-weight: 100;
@@ -112,7 +116,7 @@ article p> code{
     background-color: var(--color-dimmer-background);
     padding: 0 5px;
     border-radius: 5px;
-    border: 1px solid var(--color-secondary);
+    /* border: 1px solid var(--color-secondary); */
     font-family: 'Courier New', Courier, monospace;
     /* font-weight: bold; */
     font-size: 1.2rem;
