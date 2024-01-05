@@ -74,6 +74,10 @@ img{
     nav{
     width: 100vw !important;
     }
+    #links{
+        width: 100vw;
+        
+    }
     #links a{
         font-size: 0.8rem !important;
     }

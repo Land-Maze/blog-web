@@ -9,3 +9,8 @@
 #progress-bar > hr#progress-bar-liner{
     border: 1.5px var(--color-fourth) solid;
 }
+@media screen and (max-width: 600px){
+    #progress-bar{
+        display: none;
+    }
+}
