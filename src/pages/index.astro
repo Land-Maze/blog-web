@@ -1,20 +1,15 @@
 ---
-import Base from "../layouts/base.astro";
-import Post from "../components/Post.astro";
-import { getCollection } from "astro:content";
 
-const posts = await getCollection("posts");
 ---
 
-<Base title="Home | Land Maze">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu Mono" />
-    <div id="grid-posts">
-        {
-            posts.map((post) => (
-                <Post url={`/posts/${post.slug}`} title={post.data.title} image={post.data.image} date={post.data.pubDate} description={post.data.description} tags={post.data.tags}/>
-            ))
-            
-        }
-
-    </div>
-</Base>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="generator" content={Astro.generator} />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog | Land Maze</title>
+</head>
+<body>
+    
+</body>
+</html>
