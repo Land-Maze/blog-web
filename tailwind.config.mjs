@@ -13,6 +13,7 @@ export default {
       fontFamily: {
         body: ['"Roboto"', "sans-serif"],
         heading: ['"Poppins"', "sans-serif"],
+		mono: ['"PT Mono"', "monospace"]
       },
 	  spacing: {
 		pagemax: "1536px",

@@ -1,6 +1,7 @@
 ---
 import "../css/index.css"
 import Header from "../Components/Header.astro"
+import Tag from "../Components/Tag.astro"
 ---
 
 <html lang="en">
@@ -10,7 +11,10 @@ import Header from "../Components/Header.astro"
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog | Land Maze</title>
 </head>
-<body class="bg-background text-text font-body selection:bg-accent selection:text-black p-10 pt-8">
+<body class="bg-background text-text font-body selection:bg-accent selection:text-black p-10 pt-8 2xl:w-pagemax 2xl:m-auto">
     <Header />
+    <div id="filter-tags" class="">
+        <Tag name="Math" color="red" type="primary" size={5}/>
+    </div>
 </body>
 </html>

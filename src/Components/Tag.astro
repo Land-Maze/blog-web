@@ -1,0 +1,15 @@
+---
+
+interface Props {
+    name: string;
+    id?: string;
+    size: number;
+    type: 'primary' | 'secondary';
+    color: string;
+}
+const { name, id, type, color } = Astro.props;
+---
+
+<div class="tag" id={id} class=`bg-${color}-500 text-${color}-800 text-opacity-50`>
+    { name }
+</div>
