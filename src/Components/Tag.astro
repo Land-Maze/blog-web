@@ -1,15 +1,26 @@
 ---
-
 interface Props {
     name: string;
-    id?: string;
-    size: number;
+    size: "small" | "medium" | "large";
     type: 'primary' | 'secondary';
-    color: string;
+    color: "red" | "purple" | "green" | "blue" | "orange";
 }
-const { name, id, type, color } = Astro.props;
----
+const { name, size, type, color } = Astro.props;
 
-<div class="tag" id={id} class=`bg-${color}-500 text-${color}-800 text-opacity-50`>
-    { name }
-</div>
+const sizes = {
+  "small": 'text-xs',
+  "medium": 'text-md',
+  "large": 'text-3xl',
+};
+
+const colors = {
+    "red": ["bg-red-300", " text-red-900"],
+    "purple": ["bg-purple-300", " text-purple-900"],
+    "green": ["bg-green-300", " text-green-900"],
+    "blue": ["bg-blue-300", " text-blue-900"],
+    "orange": ["bg-orange-300", " text-orange-900"],
+}
+---
+<button data-tag-name={name} class={`${sizes[size]} ${colors[color][0]} ${colors[color][1]} ` + " opacity-80 inline-block cursor-pointer rounded w-auto md:py-3 py-4 xl:py-2 xl:text-4xl md:text-2xl text-center flex-1 text-nowrap px-5"}>
+    {name}
+</button>

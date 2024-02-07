@@ -1,7 +1,46 @@
 ---
 import "../css/index.css"
+import "../css/_base.css"
 import Header from "../Components/Header.astro"
 import Tag from "../Components/Tag.astro"
+import Image1 from "../assets/dummyData_1.jpg"
+const dummyData = [
+    {
+        title: "How to make a blog with Astro",
+        image: Image1,
+        description: "This is a tutorial on how to make a blog with Astro",
+        tags: ["Tutorial", "Development"],
+        date: "2021-10-10 10:00",
+    },
+    {
+        title: "Linear algebra",
+        // image: Image2,
+        description: "How complex numbers can be implemented in matrices",
+        tags: ["Math", "Research", "Data Science"],
+        date: "2022-01-15 09:30",
+    },
+    {
+        title: "Astrophysics: Exploring the Universe",
+        // image: Image2,
+        description: "Discover the wonders of astrophysics and the mysteries of the universe",
+        tags: ["Science", "Research", "Astronomy"],
+        date: "2022-03-20 14:15",
+    },
+    {
+        title: "Web Development: Building Modern Websites",
+        // image: Image3,
+        description: "Learn the latest web development techniques and build stunning websites",
+        tags: ["Development", "Web", "Frontend"],
+        date: "2022-05-10 11:45",
+    },
+    {
+        title: "Machine Learning: From Theory to Practice",
+        // image: Image4,
+        description: "Explore the fundamentals of machine learning and apply them in real-world scenarios",
+        tags: ["Data Science", "Machine Learning", "Artificial Intelligence"],
+        date: "2022-07-05 16:20",
+    },
+]
 ---
 
 <html lang="en">
@@ -11,10 +50,33 @@ import Tag from "../Components/Tag.astro"
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog | Land Maze</title>
 </head>
-<body class="bg-background text-text font-body selection:bg-accent selection:text-black p-10 pt-8 2xl:w-pagemax 2xl:m-auto">
+<body class="bg-background text-text selection:bg-accent selection:text-black p-10 pt-8 2xl:w-pagemax 2xl:m-auto font-mono">
     <Header />
-    <div id="filter-tags" class="">
-        <Tag name="Math" color="red" type="primary" size={5}/>
+    <span class="my-10 xl:text-8xl text-6xl text-center w-auto sm:block hidden decoration-dotted" style="text-decoration: underline overline dashed; text-underline-offset: 24px;">Main tags</span>
+    <div id="filter-tags" class="sm:flex flex-wrap gap-5 justify-between hidden font-mono">
+        <Tag name="Math" color="red" type="primary" size={"large"}/>
+        <Tag name="Research" color="purple" type="primary" size={"large"}/>
+        <Tag name="Development" color="green" type="primary" size={"large"}/>
+        <Tag name="Tutorial" color="blue" type="primary" size={"large"}/>
+        <Tag name="Deep learning" color="orange" type="primary" size={"large"}/>
     </div>
+
+    <span class="my-10 xl:text-5xl text-3xl w-auto block text-center decoration-dotted op" style="text-decoration: underline overline dashed; text-underline-offset: 24px;">Recent posts</span>
+
+    <div class="grid grid-cols-2">
+        <div class="border border-solid border-black p-2 row-span-2">
+          |
+        </div>
+        <div class="border border-solid border-black p-2">
+          *
+        </div>
+        <div class="border border-solid border-black p-2">
+          *
+        </div>
+        <!-- Continue with a regular 2x2 grid -->
+        <div class="border border-solid border-black p-2">
+            *
+        </div>
+      </div>
 </body>
 </html>
