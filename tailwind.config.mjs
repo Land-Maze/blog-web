@@ -13,15 +13,15 @@ export default {
       fontFamily: {
         body: ['"Roboto"', "sans-serif"],
         heading: ['"Poppins"', "sans-serif"],
-		mono: ['"PT Mono"', "monospace"]
+        mono: ['"PT Mono"', "monospace"],
       },
-	  spacing: {
-		pagemax: "1536px",
-		18: "4.75rem",
-	  },
-	  screens: {
-		xs: "385px",
-	  }
+      spacing: {
+        pagemax: "1536px",
+        18: "4.75rem",
+      },
+      screens: {
+        xs: "385px",
+      },
     },
   },
   plugins: [],
