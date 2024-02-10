@@ -1,0 +1,11 @@
+---
+interface Props {
+    href: string;
+    icon: string;
+}
+const { href, icon }: Props = Astro.props;
+---
+
+<a href={href} class="logo-shadow duration-200 transition opacity-60 hover:opacity-100">
+    <img src={icon} alt="github logo" class="size-14 invert" />
+</a>

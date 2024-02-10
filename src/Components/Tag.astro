@@ -1,26 +1,20 @@
 ---
+import { colors } from '../utils/colors';
+import { colorPickerLetter } from '../utils/colorPickerLetter';
 interface Props {
     name: string;
     size: "small" | "medium" | "large";
     type: 'primary' | 'secondary';
-    color: "red" | "purple" | "green" | "blue" | "orange";
 }
-const { name, size, type, color } = Astro.props;
+const { name, size, type } = Astro.props;
 
 const sizes = {
-  "small": 'text-xs',
-  "medium": 'text-md',
-  "large": 'text-3xl',
+  "small": 'xl:text-sm md:text-xs text-2xs md:py-1 py-0.5 px-3',
+  "medium": 'xl:text-xl md:text-lg text-base md:py-2 py-1 px-5',
+  "large": 'xl:text-3xl md:text-2xl text-xl md:py-2 py-1 px-5',
 };
-
-const colors = {
-    "red": ["bg-red-300", " text-red-900"],
-    "purple": ["bg-purple-300", " text-purple-900"],
-    "green": ["bg-green-300", " text-green-900"],
-    "blue": ["bg-blue-300", " text-blue-900"],
-    "orange": ["bg-orange-300", " text-orange-900"],
-}
+const colorPicked = colorPickerLetter(name[0])
 ---
-<button data-tag-name={name} class={`${sizes[size]} ${colors[color][0]} ${colors[color][1]} ` + " opacity-80 inline-block cursor-pointer rounded-2xl w-auto md:py-2 py-1 xl:text-3xl md:text-2xl text-xl text-center flex-1 text-nowrap px-5 shadow-inner shadow-black transition duration-250 hover:filter contrast-75 hover:contrast-200 hover:shadow-sm hover:shadow-white"}>
+<button data-tag-name={name} class={`${sizes[size]} ${colors[colorPicked][0]} ${colors[colorPicked][1]} ` + " opacity-80 inline-block cursor-pointer rounded-2xl w-auto text-center flex-1 text-nowrap shadow-inner shadow-black transition duration-250 hover:filter contrast-75 hover:contrast-200 hover:shadow-sm hover:shadow-white"}>
     {name}
 </button>

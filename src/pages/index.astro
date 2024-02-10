@@ -4,6 +4,7 @@ import "../css/_base.css";
 import Header from "../Components/Header.astro";
 import Tag from "../Components/Tag.astro";
 import Post from "../Components/Post.astro";
+import Footer from "../Components/Footer.astro";
 
 const dummyData = [
   {
@@ -67,11 +68,11 @@ const dummyData = [
       id="filter-tags"
       class="sm:flex flex-wrap gap-5 justify-between hidden font-mono"
     >
-      <Tag name="Math" color="red" type="primary" size={"large"} />
-      <Tag name="Research" color="purple" type="primary" size={"large"} />
-      <Tag name="Development" color="green" type="primary" size={"large"} />
-      <Tag name="Tutorial" color="blue" type="primary" size={"large"} />
-      <Tag name="Machine learning" color="orange" type="primary" size={"large"} />
+      <Tag name="Math" type="primary" size="large" />
+      <Tag name="Research" type="primary" size="large" />
+      <Tag name="Development" type="primary" size="large" />
+      <Tag name="Tutorial" type="primary" size="large" />
+      <Tag name="Machine learning" type="primary" size="large" />
     </div>
 
     <span
@@ -118,5 +119,6 @@ const dummyData = [
         date={dummyData[4].date}
       />
     </div>
+    <Footer />
   </body>
 </html>
