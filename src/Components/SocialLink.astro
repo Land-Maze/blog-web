@@ -6,6 +6,6 @@ interface Props {
 const { href, icon }: Props = Astro.props;
 ---
 
-<a href={href} class="logo-shadow duration-200 transition opacity-60 hover:opacity-100">
-    <img src={icon} alt="github logo" class="size-10 invert" />
+<a href={href} target="_blank" class="logo-shadow duration-200 transition opacity-60 hover:opacity-100">
+    <img src={icon} alt="github logo" class="invert w-full min-w-6 max-w-12" />
 </a>

@@ -60,7 +60,7 @@ const dummyData = [
   >
     <Header />
     <span
-      class="my-10 xl:text-6xl md:text-4xl text-3xl text-center w-auto sm:block hidden decoration-dotted"
+      class="my-10 xl:text-6xl md:text-4xl text-3xl text-center w-auto sm:block hidden decoration-dotted opacity-80"
       style="text-decoration: underline overline dashed; text-underline-offset: 24px;"
       >Main tags</span
     >
@@ -76,12 +76,12 @@ const dummyData = [
     </div>
 
     <span
-      class="my-10 xl:text-5xl text-3xl w-auto block text-center decoration-dotted op"
+      class="my-10 xl:text-5xl text-3xl w-auto block text-center decoration-dotted opacity-80"
       style="text-decoration: underline overline dashed; text-underline-offset: 24px;"
       >Recent posts</span
     >
 
-    <div class="grid grid-cols-2 xl:gap-10">
+    <div class="grid md:grid-cols-2 grid-cols-1 xl:gap-10">
       <Post
         title={dummyData[0].title}
         image={dummyData[0].image}

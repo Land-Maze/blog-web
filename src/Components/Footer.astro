@@ -3,16 +3,15 @@ import SocialLink from "../Components/SocialLink.astro";
 import Link from "./Link.astro";
 ---
 
-<!-- TODO: Add optimization -->
 <footer class="flex flex-col gap-1 mt-8">
     <div class="flex flex-row items-center">
-        <hr class="w-full ml-14">
+        <hr class="w-full">
         <div class="w-full flex flex-row gap-8 mx-10 justify-center">
-            <SocialLink href="" icon="/images/github-logo.png" />
-            <SocialLink href="" icon="/images/github-logo.png" />
-            <SocialLink href="" icon="/images/github-logo.png" />
+            <SocialLink href="https://github.com/Land-Maze" icon="/images/github-logo.png" />
+            <SocialLink href="https://t.me/land_maze" icon="/images/telegram-logo.png" />
+            <SocialLink href="" icon="/images/linkedin-logo.png" />
         </div>
-        <hr class="w-full mr-14">
+        <hr class="w-full">
     </div>
     <span class="text-center font-light text-lg mt-4">Land Maze</span>
     <span class="text-center text-sm font-bold mb-4">© 2024 - {new Date().getFullYear()} - <Link href="" target="_blank" rel="" style="text-primary">GNU GPL 3.0</Link></span>

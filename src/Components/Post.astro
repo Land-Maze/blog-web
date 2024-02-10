@@ -18,9 +18,9 @@ const { title, date, description, image, tags, style } = Astro.props as Props;
 ---
 
 <article class={"post p-2.5 h-fit flex flex-col self-center" + ' ' + style}>
-    <Link href="#" rel="noopener" target='_blank' style="text-center my-3 text-2xl">
-        <img src={image} class="w-full h-48 object-cover rounded-3xl"/>
-        {title}
+    <Link href="#" rel="noopener" target='_blank' style="text-center my-1.5 text-2xl" icon={true}>
+        <img src={image} class="w-full h-48 object-cover rounded-3xl mb-2"/>
+        <span class="">{title}</span>
     </Link>
     <span class="md:text-xs text-2xs text-accent opacity-50">{date}</span>
     <p class="overflow-hidden text-ellipsis line-clamp-2 opacity-70 contr">{description}</p>

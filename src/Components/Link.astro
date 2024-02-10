@@ -4,10 +4,12 @@ interface Props{
     target: '_blank' | '_self' | '_parent' | '_top';
     rel: string;
     style?: string;
+    icon?: boolean;
 }
-const { href, target, rel, style }: Props = Astro.props;
+const { href, target, rel, style, icon }: Props = Astro.props;
 ---
 
 <a href={href} target={target} rel={rel} class={"text-accent hover:text-primary hover:underline hover:scale-110 transform duration-200" + ' ' + style}>
     <slot></slot>
+    <img src="/images/link-ico.png" class={"inline ml-1 w-4 h-4 invert opacity-20" + (icon ? '' : ' hidden')} />
 </a>
