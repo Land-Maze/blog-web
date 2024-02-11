@@ -3,49 +3,13 @@ import "../css/index.css";
 import "../css/_base.css";
 import Header from "../Components/Header.astro";
 import Tag from "../Components/Tag.astro";
-import Post from "../Components/Post.astro";
+import Post from "../Components/PostCard.astro";
 import Footer from "../Components/Footer.astro";
 
-const dummyData = [
-  {
-    title: "How to make a blog with Astro",
-    image: "/images/dummyData_1.jpg",
-    description: "This is a tutorial on how to make a blog with Astro",
-    tags: ["Tutorial", "Development"],
-    date: "2021-10-10 10:00",
-  },
-  {
-    title: "Linear algebra",
-    image: "/images/dummyData_4.jpg",
-    description: "How complex numbers can be implemented in matrices",
-    tags: ["Math", "Research", "Data Science"],
-    date: "2022-01-15 09:30",
-  },
-  {
-    title: "Astrophysics: Exploring the Universe",
-    image: "/images/dummyData_2.jpg",
-    description:
-      "Discover the wonders of astrophysics and the mysteries of the universe with this course on astronomy and space science research. ",
-    tags: ["Science", "Research", "Astronomy"],
-    date: "2022-03-20 14:15",
-  },
-  {
-    title: "Web Development: Building Modern Websites",
-    image: "/images/dummyData_3.jpg",
-    description:
-      "Learn the latest web development techniques and build stunning websites",
-    tags: ["Development", "Web", "Frontend"],
-    date: "2022-05-10 11:45",
-  },
-  {
-    title: "Machine Learning: From Theory to Practice",
-    image: "/images/dummyData_5.jpg",
-    description:
-      "Explore the fundamentals of machine learning and apply them in real-world scenarios",
-    tags: ["Data Science", "Machine Learning", "Artificial Intelligence"],
-    date: "2022-07-05 16:20",
-  },
-];
+import { filterPosts } from "../utils/filterPosts";
+
+const allPosts = await Astro.glob("../**/*.md");
+const formattedPosts = filterPosts(allPosts, { limit: 6, sortByDate: true });
 ---
 
 <html lang="en">
@@ -82,42 +46,17 @@ const dummyData = [
     >
 
     <div class="grid md:grid-cols-2 grid-cols-1 xl:gap-10">
-      <Post
-        title={dummyData[0].title}
-        image={dummyData[0].image}
-        description={dummyData[0].description}
-        tags={dummyData[0].tags}
-        date={dummyData[0].date}
-        style=""
-      />
-      <Post
-        title={dummyData[1].title}
-        image={dummyData[1].image}
-        description={dummyData[1].description}
-        tags={dummyData[1].tags}
-        date={dummyData[1].date}
-      />
-      <Post
-        title={dummyData[2].title}
-        image={dummyData[2].image}
-        description={dummyData[2].description}
-        tags={dummyData[2].tags}
-        date={dummyData[2].date}
-      />
-      <Post
-        title={dummyData[3].title}
-        image={dummyData[3].image}
-        description={dummyData[3].description}
-        tags={dummyData[3].tags}
-        date={dummyData[3].date}
-      />
-      <Post
-        title={dummyData[4].title}
-        image={dummyData[4].image}
-        description={dummyData[4].description}
-        tags={dummyData[4].tags}
-        date={dummyData[4].date}
-      />
+      {
+        formattedPosts.map((post) => (
+          <Post
+            title={post.frontmatter.title}
+            description={post.frontmatter.description}
+            tags={post.frontmatter.tags}
+            date={post.frontmatter.date}
+            image={post.frontmatter.image}
+            />
+        ))
+      }
     </div>
     <Footer />
   </body>

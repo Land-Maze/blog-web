@@ -8,8 +8,8 @@
         <h1 id="header-username" class="font-mono xl:text-4xl xs:text-3xl text-2xl font-light xs:ml-8 ml-4 text-nowrap"> | Land Maze</h1>
     </div>
     <div class="flex items-center justify-center sm:flex-row flex-wrap gap-4 h-fit p-2 my-auto" id="header-links">
-        <a href="#" class="hover:underline transition ease-linear duration-150 hover:scale-125 hover:text-primary md:text-xl xl:text-xl">Blog</a>
-        <a href="#" class="hover:underline transition ease-linear duration-150 hover:scale-125 hover:text-primary md:text-xl xl:text-xl">About me</a>
+        <a href="/" id="blog-link" class="hover:underline transition ease-linear duration-150 hover:scale-125 hover:text-primary md:text-xl xl:text-xl">Blog</a>
+        <a href="#" id="about-me-link" class="hover:underline transition ease-linear duration-150 hover:scale-125 hover:text-primary md:text-xl xl:text-xl">About me</a>
         <div id="search-bar" class="flex bg-white p-2 rounded-xl items-center">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.2" stroke="currentColor" class="w-6 h-6 invert opacity-50">
                 <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
@@ -19,3 +19,18 @@
     </div>
 </header>
 <hr class="m-auto w-auto my-10 xl:mt-10 md:mt-8 mt-5"/>
+
+<script>
+    const currentLink = window.location.pathname;
+    if(currentLink === "/") {
+        const element = document.getElementById("blog-link")!;
+        element.classList.add("text-accent", "underline");
+        element.style.cursor = "default";
+        element.style.pointerEvents = "none";
+    } else if(currentLink === "/about-me") {
+        const element = document.getElementById("about-me-link")!;
+        element.classList.add("text-accent", "underline");
+        element.style.cursor = "default";
+        element.style.pointerEvents = "none";
+    }
+</script>

@@ -1,0 +1,25 @@
+---
+import "../css/index.css";
+import "../css/_base.css";
+import Link from "../Components/Link.astro"
+---
+
+<html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="generator" content={Astro.generator} />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Blog | Land Maze</title>
+    </head>
+    <body
+      class="bg-background text-text selection:bg-accent selection:text-black p-10 pt-8 2xl:w-pagemax 2xl:m-auto font-mono flex flex-col items-center"
+    >
+    <div class="text-center m-auto">
+        <span class="text-3xl font-light mb-4 block">Sry :3</span>
+        <span class="text-xl font-bold mb-4 block">Page does not exist</span>
+        <Link href="/" style="gradient-text uppercase hover:scale-125" target="_self" rel="">Go back to home</Link>
+    </div>
+    </body>
+  </html>
+</html>
