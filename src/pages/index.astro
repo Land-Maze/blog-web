@@ -5,9 +5,7 @@ import Header from "../Components/Header.astro";
 import Tag from "../Components/Tag.astro";
 import Post from "../Components/PostCard.astro";
 import Footer from "../Components/Footer.astro";
-
 import { filterPosts } from "../utils/filterPosts";
-
 const allPosts = await Astro.glob("../**/*.md");
 const formattedPosts = filterPosts(allPosts, { limit: 6, sortByDate: true });
 ---

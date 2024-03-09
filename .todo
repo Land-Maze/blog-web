@@ -1,0 +1,29 @@
+# Main tasks:
+  ## Make cd to deploy project in digital ocean:
+    [x] Create a droplet
+    [] Link domain to droplet
+    [] Make yml script for deployment
+
+  ## Make functional search system:
+
+    [] Create a search page
+    [] Didn't found any post page
+
+    ### Create searching algorithm:
+      [] Create a searching algorithm library
+
+    ### Create a search bar component:
+      [x] Create component file
+      [] Link it to searching library
+      [] Create popup with 5 posts when searching
+
+
+# Index Page:
+  [] Add search bar
+  
+# Post page:
+  [] Add search bar
+
+# About page:
+  [] Create small about content and put contact info there
+

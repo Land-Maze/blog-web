@@ -8,5 +8,8 @@ export default defineConfig({
   site: 'https://landmaze.me',
   integrations: [tailwind(), mdx({
 
-  })]
+  })],
+  server: {
+    port: 3005,
+  }
 });
