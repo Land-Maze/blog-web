@@ -1,0 +1,14 @@
+[Unit]
+Description=Blog Web Express Server
+
+[Service]
+ExecStart=/root/blog-web/entry.mjs
+Restart=always
+User=root
+Group=root
+Environment=PATH=/usr/bin:/usr/local/bin
+Environment=NODE_ENV=production
+WorkingDirectory=/root/blog-web
+
+[Install]
+WantedBy=multi-user.target
