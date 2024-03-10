@@ -1,15 +1,15 @@
 import type { MarkdownInstance } from "astro";
-import type { PostData } from './types/MarkDown'
+import type { PostDataType } from './types/MarkDown'
 
-type filterSettings = {
+type filterSettingsType = {
     filterByTags?: string[];
     sortByDate?: boolean;
     limit: number;
   };
 
-export const filterPosts = (posts: MarkdownInstance<Record<string, any>>[], settings: filterSettings) => {
+export const filterPosts = (posts: MarkdownInstance<Record<string, any>>[], settings: filterSettingsType) => {
     const filteredPosts = posts.reduce((acc, post) => {
-        const postData = post.frontmatter as PostData;
+        const postData = post.frontmatter as PostDataType;
         if (settings.filterByTags) {
             const hasTag = settings.filterByTags.some((tag) => postData.tags.includes(tag));
             if (!hasTag) return acc;
@@ -21,8 +21,8 @@ export const filterPosts = (posts: MarkdownInstance<Record<string, any>>[], sett
 
     if (settings.sortByDate) {
         filteredPosts.sort((a, b) => {
-            const aDate = new Date((a.frontmatter as PostData).date);
-            const bDate = new Date((b.frontmatter as PostData).date);
+            const aDate = new Date((a.frontmatter as PostDataType).date);
+            const bDate = new Date((b.frontmatter as PostDataType).date);
             return bDate.getTime() - aDate.getTime();
         });
     } else
