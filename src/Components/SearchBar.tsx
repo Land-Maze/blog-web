@@ -71,7 +71,7 @@ export default function SearchBar(props: SearchBarProps) {
             <div key={"search-" + index} onClick={eventClickHandler} className='flex flex-col
             border-2 border-t-0 first:border-t-0 bg-background-shades-600 border-background-shades-400 w-full text-sm cursor-pointer 
             hover:scale-105 transition-all p-2 '>
-              <span>{result.PostDataType.title}</span>
+              <span className="text-white font">{result.PostDataType.title}</span>
               <span className={`self-end text-2xs w-fit px-1 rounded-lg mt-1 ${colors[tagColor][0]} ${colors[tagColor][1]}`}>{result.PostDataType.tags[0]}</span>
             </div>
           )

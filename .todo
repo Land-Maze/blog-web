@@ -19,13 +19,13 @@
       [x] Create component file
       [x] Link it to searching library
       [x] Create popup with 5 posts when searching
+      [x] Style popup
 
-
-# Index Page <5>:
-  [] Add search bar
-  
 # Post page <5>:
-  [] Add search bar
+  ## Create a layout for post page:
+    [] html structure
+    [] styling
+  [] Configure mdx posts
 
 # About page <5>:
   [] Create small about content and put contact info there
