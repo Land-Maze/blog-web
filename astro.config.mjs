@@ -8,7 +8,9 @@ import react from "@astrojs/react";
 // https://astro.build/config
 export default defineConfig({
   site: 'https://landmaze.me',
-  integrations: [tailwind(), mdx({}), react()],
+  integrations: [tailwind(), mdx({}), react({
+    include: ['src/**/*.jsx', 'src/**/*.tsx'],
+  })],
   server: {
     port: 3005
   },

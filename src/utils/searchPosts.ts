@@ -1,5 +1,3 @@
-import { getCollection, getEntries } from "astro:content"
-
 export const fullSearch = (key: string) => {
   return key
 }
