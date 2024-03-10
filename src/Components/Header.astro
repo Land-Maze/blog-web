@@ -1,7 +1,7 @@
 ---
 import SearchBar from './SearchBar.jsx';
-import { getCollection, getEntries } from "astro:content"
-const allPosts = await Astro.glob("../**/*.md");
+import { formatPosts } from '../utils/formatPosts.js';
+const data = formatPosts(await Astro.glob("../**/*.md"));
 ---
 
 <header class="flex md:justify-between md:flex-row flex-col font-light">
@@ -12,7 +12,7 @@ const allPosts = await Astro.glob("../**/*.md");
     <div class="flex items-center justify-center sm:flex-row flex-wrap gap-4 h-fit p-2 my-auto" id="header-links">
         <a href="/" id="blog-link" class="hover:underline transition ease-linear duration-150 hover:scale-125 hover:text-primary md:text-xl xl:text-xl">Blog</a>
         <a href="#" id="about-me-link" class="hover:underline transition ease-linear duration-150 hover:scale-125 hover:text-primary md:text-xl xl:text-xl">About me</a>
-        <SearchBar data={} client:only="react"/>
+        <SearchBar data={data} client:only="react"/>
     </div>
 </header>
 <hr class="m-auto w-auto my-10 xl:mt-10 md:mt-8 mt-5"/>
