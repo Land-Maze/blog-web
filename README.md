@@ -1,3 +1,4 @@
+[![Build and Deploy](https://github.com/Land-Maze/blog-web/actions/workflows/deploy.yml/badge.svg)](https://github.com/Land-Maze/blog-web/actions/workflows/deploy.yml)
 # Link to website
 [https://landmaze.me](https://landmaze.me)
 
