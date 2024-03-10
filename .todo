@@ -13,12 +13,12 @@
     [] Didn't found any post page
 
     ### Create searching algorithm <1>:
-      [] Create a searching algorithm library
+      [x] Create a searching algorithm library
 
     ### Create a search bar component <2>:
       [x] Create component file
-      [] Link it to searching library
-      [] Create popup with 5 posts when searching
+      [x] Link it to searching library
+      [x] Create popup with 5 posts when searching
 
 
 # Index Page <5>:
