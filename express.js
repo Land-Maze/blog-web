@@ -4,7 +4,7 @@ import { handler as ssrHandler } from './dist/server/entry.mjs';
 const app = express();
 
 const basePath = '/';
-app.use(basePath, express.static('dist/client'));
+app.use(basePath, express.static('client/'));
 app.use(ssrHandler);
 
 app.listen(3005, () => {

@@ -59,12 +59,14 @@ jobs:
       - name: Build
         run: pnpm run build
 
-      - name: Make entrypoint executable
-        run: chmod +x entry.mjs
+      - name: Make entry script executable
+        run: chmod +x ./BlogWebExpressServer.sh
           
-      - name: Transfer and delete everything that is not in the dist folder
+      - name: Transfer and delete if not same
         run: |
           rsync -av --delete dist/ ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}:/root/blog-web
+          rsync -av --delete BlogWebExpressServer.sh ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}:/root/blog-web
+          rsync -av --delete express.js ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}:/root/blog-web
 
       - name: Restart Express server
         run: |
