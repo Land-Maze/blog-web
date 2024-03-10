@@ -1,5 +1,7 @@
-import express from 'express';
-import { handler as ssrHandler } from './dist/server/entry.mjs';
+// import express from 'express';
+// import { handler as ssrHandler } from './dist/server/entry.mjs';
+const express = require('express');
+const { handler: ssrHandler } = require('./dist/server/entry.mjs');
 
 const app = express();
 
