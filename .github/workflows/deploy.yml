@@ -75,8 +75,9 @@ jobs:
       #     sudo rsync -e "ssh -i ${{secrets.SSH_PRIVATE_KEY}} -o ControlPath=$SSH_AUTH_SOCK" -av --delete dist/ --port=${{ secrets.SSH_PORT }} ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}:/root/blog-web
       #     sudo rsync -e "ssh -i ${{secrets.SSH_PRIVATE_KEY}} -o ControlPath=$SSH_AUTH_SOCK" -av --delete BlogWebExpressServer.sh --port=${{ secrets.SSH_PORT }} ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}:/root/blog-web
       #     sudo rsync -e "ssh -i ${{secrets.SSH_PRIVATE_KEY}} -o ControlPath=$SSH_AUTH_SOCK" -av --delete express.js --port=${{ secrets.SSH_PORT }} ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}:/root/blog-web
-      # I have no idea why the above code doesn't work, but the below code works
       
+      # I have no idea why the above code doesn't work, but the below code works
+
       - name: Transfer and delete if not same
         run: |
           ssh -p ${{secrets.SSH_PORT}} ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }} "rm -rf /root/blog-web/*"
