@@ -53,7 +53,28 @@ export default function SearchBar(props: SearchBarProps) {
   };
 
   const eventClickHandler: MouseEventHandler<HTMLDivElement> = (e: MouseEvent<HTMLDivElement>) => {
+    console.log(e.currentTarget)
+  };
 
+  const formatString = (text: string, index: {start: number, end: number}[]) => {
+    let currentIndex = 0;
+
+    const formattedParts = index.map(({start, end}, index) => {
+      const unmarkedPart = text.substring(currentIndex, start);
+      const unmarkedElement = <span key={"unmarked-" + index}>{unmarkedPart}</span>;
+      
+      const markedPart = text.substring(start, end + 1);
+      const markedElement = <span key={"marked-" + index} className="text-primary">{markedPart}</span>;
+
+      currentIndex = end + 1;
+
+      return [unmarkedElement, markedElement];
+    })
+
+    const remainingPart = text.substring(currentIndex);
+    const remainingElement = <span key={"remaining"}>{remainingPart}</span>;
+
+    return <div>{formattedParts}{remainingElement}</div>
   };
 
   return(
@@ -66,16 +87,19 @@ export default function SearchBar(props: SearchBarProps) {
       </div>
       <div id="search-results" autoFocus className="flex-col text-white p-0 rounded-b-xl items-center absolute z-10 w-full">
         {searchResults.map((result, index) => {
+          
           const tagColor = colorPickerLetter(result.PostDataType.tags[0][0])
           return(
             <div key={"search-" + index} onClick={eventClickHandler} className='flex flex-col
             border-2 border-t-0 first:border-t-0 bg-background-shades-600 border-background-shades-400 w-full text-sm cursor-pointer 
             hover:scale-105 transition-all p-2 '>
-              <span className="text-white font">{result.PostDataType.title}</span>
+              <span className="text-white">
+                {formatString(result.PostDataType.title, result.highlightIndex)}
+              </span>
               <span className={`self-end text-2xs w-fit px-1 rounded-lg mt-1 ${colors[tagColor][0]} ${colors[tagColor][1]}`}>{result.PostDataType.tags[0]}</span>
             </div>
           )
-        })}
+        }) ?? <div className="text-white">No results</div>}
       </div>
     </form>
 )};

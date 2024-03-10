@@ -46,7 +46,7 @@ const formattedPosts = filterPosts(allPosts, { limit: 6, sortByDate: true });
 
     <div class="grid md:grid-cols-2 grid-cols-1 xl:gap-10">
       {
-        formattedPosts.map((post) => (
+        formattedPosts.slice(0, 6).map((post) => (
           <Post
             title={post.frontmatter.title}
             description={post.frontmatter.description}
