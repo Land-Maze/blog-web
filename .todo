@@ -2,7 +2,7 @@
   ## Make cd to deploy project in digital ocean:
     [x] Create a droplet
     [] Link domain to droplet
-    [] Make yml script for deployment
+    [x] Make yml script for deployment
 
   ## Make functional search system:
 
