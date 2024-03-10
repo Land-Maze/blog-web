@@ -33,15 +33,14 @@ jobs:
         with:
           cache: 'pnpm'
           node-version: '18'
-
           
       - name: Setup SSH
         uses: webfactory/ssh-agent@v0.5.3
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
-      - name: Echo SSH known hosts
-        run: cat /home/runner/.ssh/known_hosts
+      - name: Add SSH to known hosts
+        run: ssh-keyscan ${{ secrets.SSH_HOST }} >> /home/runner/.ssh/known_hosts
 
       - name: Check if SSH is working
         run: ssh -p ${{secrets.SSH_PORT}} ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }} "echo 'SSH is working'"
@@ -71,11 +70,19 @@ jobs:
       - name: Make entry script executable
         run: chmod +x ./BlogWebExpressServer.sh
           
+      # - name: Transfer and delete if not same
+      #   run: |
+      #     sudo rsync -e "ssh -i ${{secrets.SSH_PRIVATE_KEY}} -o ControlPath=$SSH_AUTH_SOCK" -av --delete dist/ --port=${{ secrets.SSH_PORT }} ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}:/root/blog-web
+      #     sudo rsync -e "ssh -i ${{secrets.SSH_PRIVATE_KEY}} -o ControlPath=$SSH_AUTH_SOCK" -av --delete BlogWebExpressServer.sh --port=${{ secrets.SSH_PORT }} ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}:/root/blog-web
+      #     sudo rsync -e "ssh -i ${{secrets.SSH_PRIVATE_KEY}} -o ControlPath=$SSH_AUTH_SOCK" -av --delete express.js --port=${{ secrets.SSH_PORT }} ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}:/root/blog-web
+      # I have no idea why the above code doesn't work, but the below code works
+      
       - name: Transfer and delete if not same
         run: |
-          rsync -av --delete dist/ ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}:/root/blog-web
-          rsync -av --delete BlogWebExpressServer.sh ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}:/root/blog-web
-          rsync -av --delete express.js ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}:/root/blog-web
+          ssh -p ${{secrets.SSH_PORT}} ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }} "rm -rf /root/blog-web/*"
+          scp -P ${{secrets.SSH_PORT}} -r dist/ ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}:/root/blog-web
+          scp -P ${{secrets.SSH_PORT}} BlogWebExpressServer.sh ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}:/root/blog-web
+          scp -P ${{secrets.SSH_PORT}} express.js ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}:/root/blog-web
 
       - name: Restart Express server
         run: |
