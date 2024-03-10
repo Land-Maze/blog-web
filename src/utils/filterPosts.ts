@@ -1,21 +1,11 @@
 import type { MarkdownInstance } from "astro";
+import type { PostData } from './types/MarkDown'
 
 type filterSettings = {
     filterByTags?: string[];
     sortByDate?: boolean;
     limit: number;
-};
-
-type PostData = {
-    title: string;
-    date: string;
-    description: string;
-    image: {
-        url: string;
-        alt: string;
-    };
-    tags: string[];
-};
+  };
 
 export const filterPosts = (posts: MarkdownInstance<Record<string, any>>[], settings: filterSettings) => {
     const filteredPosts = posts.reduce((acc, post) => {

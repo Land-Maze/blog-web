@@ -1,29 +1,32 @@
+## Legend:
+  <n> - priority
+
 # Main tasks:
-  ## Make cd to deploy project in digital ocean:
+  ## Make cd to deploy project in digital ocean <5>:
     [x] Create a droplet
     [] Link domain to droplet
     [x] Make yml script for deployment
 
-  ## Make functional search system:
+  ## Make functional search system <3>:
 
     [] Create a search page
     [] Didn't found any post page
 
-    ### Create searching algorithm:
+    ### Create searching algorithm <1>:
       [] Create a searching algorithm library
 
-    ### Create a search bar component:
+    ### Create a search bar component <2>:
       [x] Create component file
       [] Link it to searching library
       [] Create popup with 5 posts when searching
 
 
-# Index Page:
+# Index Page <5>:
   [] Add search bar
   
-# Post page:
+# Post page <5>:
   [] Add search bar
 
-# About page:
+# About page <5>:
   [] Create small about content and put contact info there
 

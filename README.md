@@ -17,5 +17,3 @@ I have used the following technologies to build this website:
 ### Fonts: 
 - Roboto
 - Noto Sans
-
-### To test GPG signing
