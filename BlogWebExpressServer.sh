@@ -1,5 +1,6 @@
 #!/bin/bash
-cd /home/blog-web
+cd /root/blog-web
 npm install express
 echo "Express installed"
-echo "{ \"name\": \"express-server\", \"type\": \"module\", \"scripts\": { \"start\": \"node server.js\" } }" > package.json
+echo "{ \"name\": \"express-server\", \"type\": \"module\", \"scripts\": { \"start\": \"node express.js\" } }" > package.json
+npm run start
