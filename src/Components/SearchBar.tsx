@@ -1,7 +1,7 @@
 import type { PostDataType } from '../utils/types/MarkDown.ts'
 import { colors } from '../utils/colors';
 import { colorPickerLetter } from '../utils/colorPickerLetter.ts'
-import { searchFirstFive, type SearchResultType } from "../utils/searchPosts.ts"
+import { searchFirstFive } from "../utils/searchPosts.ts"
 import { useEffect, useState, type FormEventHandler, type FormEvent, type MouseEventHandler, type MouseEvent } from "react"
 
 type SearchBarProps = {
@@ -11,11 +11,13 @@ type SearchBarProps = {
 export default function SearchBar(props: SearchBarProps) {
 
   const [search, setSearch] = useState("")
-  const [searchResults, setSearchResults] = useState<SearchResultType[]>(searchFirstFive("ma", props.data))
+  const [searchResults, setSearchResults] = useState<PostDataType[]>([])
   
   useEffect(() => {
     if (search.length > 0){
       setSearchResults(searchFirstFive(search, props.data))
+    } else {
+      setSearchResults([])
     }
   }, [search])
 
@@ -56,27 +58,6 @@ export default function SearchBar(props: SearchBarProps) {
     console.log(e.currentTarget)
   };
 
-  const formatString = (text: string, index: {start: number, end: number}[]) => {
-    let currentIndex = 0;
-
-    const formattedParts = index.map(({start, end}, index) => {
-      const unmarkedPart = text.substring(currentIndex, start);
-      const unmarkedElement = <span key={"unmarked-" + index}>{unmarkedPart}</span>;
-      
-      const markedPart = text.substring(start, end + 1);
-      const markedElement = <span key={"marked-" + index} className="text-primary">{markedPart}</span>;
-
-      currentIndex = end + 1;
-
-      return [unmarkedElement, markedElement];
-    })
-
-    const remainingPart = text.substring(currentIndex);
-    const remainingElement = <span key={"remaining"}>{remainingPart}</span>;
-
-    return <div>{formattedParts}{remainingElement}</div>
-  };
-
   return(
     <form onSubmit={eventSubmitHandler} className='relative'>
       <div id="search-bar" className="flex bg-white p-2 rounded-xl items-center">
@@ -87,16 +68,15 @@ export default function SearchBar(props: SearchBarProps) {
       </div>
       <div id="search-results" autoFocus className="flex-col text-white p-0 rounded-b-xl items-center absolute z-10 w-full">
         {searchResults.map((result, index) => {
-          
-          const tagColor = colorPickerLetter(result.PostDataType.tags[0][0])
+          const tagColor = colorPickerLetter(result.tags[0][0])
           return(
             <div key={"search-" + index} onClick={eventClickHandler} className='flex flex-col
             border-2 border-t-0 first:border-t-0 bg-background-shades-600 border-background-shades-400 w-full text-sm cursor-pointer 
             hover:scale-105 transition-all p-2 '>
               <span className="text-white">
-                {formatString(result.PostDataType.title, result.highlightIndex)}
+                {result.title}
               </span>
-              <span className={`self-end text-2xs w-fit px-1 rounded-lg mt-1 ${colors[tagColor][0]} ${colors[tagColor][1]}`}>{result.PostDataType.tags[0]}</span>
+              <span className={`self-end text-2xs w-fit px-1 rounded-lg mt-1 ${colors[tagColor][0]} ${colors[tagColor][1]}`}>{result.tags[0]}</span>
             </div>
           )
         }) ?? <div className="text-white">No results</div>}
