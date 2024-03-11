@@ -7,15 +7,13 @@ import react from "@astrojs/react";
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://landmaze.me',
-  integrations: [tailwind(), mdx({}), react({
+  site: 'https://blog.landmaze.me',
+  integrations: [tailwind(), react({
     include: ['src/**/*.jsx', 'src/**/*.tsx'],
   })],
   server: {
     port: 3005
   },
-  output: "hybrid",
-  adapter: node({
-    mode: "middleware"
-  })
+  output: "static",
+  
 });

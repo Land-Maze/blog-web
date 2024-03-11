@@ -1,4 +1,5 @@
 ---
+layout: ../../layouts/post.astro
 title: 'Linear algebra'
 image: '/images/dummyData_4.jpg'
 description: 'How complex numbers can be implemented in matrices'

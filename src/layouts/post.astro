@@ -2,19 +2,21 @@
 import "../css/index.css";
 import "../css/_base.css";
 import Header from "../Components/Header.astro";
-import Tag from "../Components/Tag.astro";
 import Footer from "../Components/Footer.astro";
 import BaseHead from "../Components/BaseHead.astro";
+import type { MarkdownLayoutProps } from "astro";
+import type { PostDataType } from "../utils/types/MarkDown";
 
-interface Props {
-  title: string;
+interface Props extends MarkdownLayoutProps<PostDataType> {
+  
 }
-const { title } = Astro.props;
+const { frontmatter, url } = Astro.props;
 ---
 <html lang="en">
   <head>
     <BaseHead />
-    <title>{ title } | Land Maze</title>
+    <link rel="canonical" href={ new URL(url!, Astro.site).pathname } />
+    <title>{ frontmatter.title } | Land Maze</title>
   </head>
   <body>
     <Header />

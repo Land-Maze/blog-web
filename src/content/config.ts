@@ -18,3 +18,5 @@ const postsCollection = defineCollection({
 export const collections = {
   posts: postsCollection,
 };
+
+export { getEntry, getCollection } from "astro:content";
