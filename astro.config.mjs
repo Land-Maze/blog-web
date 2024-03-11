@@ -7,7 +7,7 @@ import react from "@astrojs/react";
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://blog.landmaze.me',
+  site: 'https://landmaze.me',
   integrations: [tailwind(), react({
     include: ['src/**/*.jsx', 'src/**/*.tsx'],
   })],
