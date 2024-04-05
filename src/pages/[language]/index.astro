@@ -1,16 +1,32 @@
 ---
-import "../css/index.css";
-import "../css/_base.css";
-import Header from "../Components/Header.astro";
-import Tag from "../Components/Tag.astro";
-import Post from "../Components/PostCard.astro";
-import Footer from "../Components/Footer.astro";
+import "../../css/index.css";
+import "../../css/_base.css";
+import Header from "../../Components/Header.astro";
+import Tag from "../../Components/Tag.astro";
+import Post from "../../Components/PostCard.astro";
+import Footer from "../../Components/Footer.astro";
 
-import BaseHead from "../Components/BaseHead.astro";
+import BaseHead from "../../Components/BaseHead.astro";
 
-import { filterPosts } from "../utils/filterPosts";
-const allPosts = await Astro.glob("../**/*.md");
+export const getStaticPaths = (() => {
+  return [
+    { params: {language: "en"}},
+    { params: {language: "ua"}}
+  ];
+});
+
+import { filterPosts } from "../../utils/filterPosts";
+
+const allPosts = await Astro.glob("../../**/*.md");
 const formattedPosts = filterPosts(allPosts, { limit: 6, sortByDate: true });
+
+import { getCollection } from "astro:content";
+const postsEntries = await getCollection('posts');
+  console.log(postsEntries.map(entry => ({
+    params: { slug: entry.slug, language: "en" }, props: { entry },
+  })));
+
+const { language } = Astro.params;
 ---
 
 <html lang="en">

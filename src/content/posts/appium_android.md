@@ -1,5 +1,6 @@
 ---
 title: 'How to scrap data from android app'
+language: 'en'
 description: 'How to scrap data from android app with appium and webdriverio. This tutorial is for beginners.'
 image: 'https://appium.io/docs/en/2.1/assets/images/appium-logo-white.png'
 tags: ['appium', 'webdriverio', 'android', 'scrapping']
