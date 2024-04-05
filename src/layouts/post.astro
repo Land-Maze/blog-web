@@ -21,7 +21,23 @@ const { frontmatter, url } = Astro.props;
   <body class="bg-background text-text selection:bg-accent selection:text-black p-10 pt-8 2xl:w-pagemax 2xl:m-auto font-mono">
     <Header />
 
-    <article class="prose-h1:text-center prose-h1:text-3xl prose-h2:text-2xl prose-h1:underline prose-h2:italic prose-h2:font-heading prose-h1:font-heading">
+    <article class="
+    prose-h1:text-center prose-h1:text-3xl prose-h1:underline prose-h1:font-heading prose-h1:font-bold
+    prose-h1:text-accent
+
+    prose-h2:italic prose-h2:font-heading prose-h2:text-2xl prose-h2:font-normal
+    prose-h2:text-accent prose-h2:text-center prose-h2:mt-2
+
+    prose-h3:font-bold prose-h3:font-mono prose-h3:text-lg
+    prose-h3:text-accent
+
+    prose-p:ml-4 prose-p:font-light prose-p:font-body 
+
+    prose-li:font-light prose-li:ml-8 prose-li:font-body prose-li:before:content-['>'] prose-li:before:mr-2 prose-li:before:ml-[-1rem] prose-li:before:text-accent prose-li:before:font-bold prose-li:before:font-heading
+
+    prose-pre:border-2 prose-pre:border-dashed prose-pre:border-accent prose-pre:rounded 
+    prose-pre:font-mono prose-pre:p-4 prose-pre:m-4
+    ">
       <slot />
     </article>
     
