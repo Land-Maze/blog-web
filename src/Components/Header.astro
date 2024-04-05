@@ -1,7 +1,12 @@
 ---
 import SearchBar from './SearchBar.jsx';
+import LanguageSwitch from './LanguageSwitch.astro';
 import { formatPosts } from '../utils/formatPosts.js';
+import { contentText } from '../utils/languageText';
 const data = formatPosts(await Astro.glob("../**/*.md"));
+import type { Language } from '../utils/types/Languages';
+
+const { language } = Astro.params as Language;
 ---
 
 <header class="flex md:justify-between md:flex-row flex-col font-light">
@@ -10,9 +15,10 @@ const data = formatPosts(await Astro.glob("../**/*.md"));
         <h1 id="header-username" class="font-mono xl:text-4xl xs:text-3xl text-2xl font-light xs:ml-8 ml-4 text-nowrap"> | Land Maze</h1>
     </div>
     <div class="flex items-center justify-center sm:flex-row flex-wrap gap-4 h-fit p-2 my-auto" id="header-links">
-        <a href="/" id="blog-link" class="hover:underline transition ease-linear duration-150 hover:scale-125 hover:text-primary md:text-xl xl:text-xl">Blog</a>
-        <a href="#" id="about-me-link" class="hover:underline transition ease-linear duration-150 hover:scale-125 hover:text-primary md:text-xl xl:text-xl">About me</a>
-        <SearchBar data={data} client:only="react"/>
+        <a href="/" id="blog-link" class="hover:underline transition ease-linear duration-150 hover:scale-125 hover:text-primary md:text-xl xl:text-xl">{contentText[language].blog_link}</a>
+        <a href="#" id="about-me-link" class="hover:underline transition ease-linear duration-150 hover:scale-125 hover:text-primary md:text-xl xl:text-xl">{contentText[language].about_me_link}</a>
+        <SearchBar placeholder={contentText[language].search_placeholder} noFoundText={contentText[language].no_found_text} data={data} client:only="react"/>
+        <LanguageSwitch />
     </div>
 </header>
 <hr class="m-auto w-auto my-10 xl:mt-10 md:mt-8 mt-5"/>

@@ -6,6 +6,8 @@ import { useEffect, useState, type FormEventHandler, type FormEvent, type MouseE
 
 type SearchBarProps = {
   data: PostDataType[];
+  placeholder: string;
+  noFoundText: string;
 }
 
 export default function SearchBar(props: SearchBarProps) {
@@ -16,8 +18,10 @@ export default function SearchBar(props: SearchBarProps) {
   useEffect(() => {
     if (search.length > 0){
       setSearchResults(searchFirstFive(search, props.data))
+      document.getElementById("not_found")?.classList.add("flex")
     } else {
       setSearchResults([])
+      document.getElementById("not_found")?.classList.remove("flex")
     }
   }, [search])
 
@@ -64,22 +68,25 @@ export default function SearchBar(props: SearchBarProps) {
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.2" stroke="currentColor" className="w-6 h-6 invert opacity-50">
             <path strokeLinecap="round" strokeLinejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
         </svg>
-        <input onFocus={eventFocusHandler} onBlur={eventBlurHandler} onInput={eventInputHandler} value={search} type="text" autoComplete='off' id="search-input" placeholder="Search" className="text-black focus:outline-none ml-1 xl:text-2xl" />
+        <input onFocus={eventFocusHandler} onBlur={eventBlurHandler} onInput={eventInputHandler} value={search} type="text" autoComplete='off' id="search-input" placeholder={props.placeholder} className="text-black focus:outline-none ml-1 xl:text-2xl" />
       </div>
       <div id="search-results" autoFocus className="flex-col text-white p-0 rounded-b-xl items-center absolute z-10 w-full">
-        {searchResults.map((result, index) => {
+        { searchResults.length > 0 ?
+        searchResults.map((result, index) => {
           const tagColor = colorPickerLetter(result.tags[0][0])
           return(
             <div key={"search-" + index} onClick={eventClickHandler} className='flex flex-col
-            border-2 border-t-0 first:border-t-0 bg-background-shades-600 border-background-shades-400 w-full text-sm cursor-pointer 
-            hover:scale-105 transition-all p-2 '>
+            border-2 border-t-0 first:border-t-0 bg-gray-900 border-background-shades-800 w-full text-sm cursor-pointer
+            hover:scale-105 transition-all p-2 last:rounded-b-2xl'>
               <span className="text-white">
                 {result.title}
               </span>
               <span className={`self-end text-2xs w-fit px-1 rounded-lg mt-1 ${colors[tagColor][0]} ${colors[tagColor][1]}`}>{result.tags[0]}</span>
             </div>
           )
-        }) ?? <div className="text-white">No results</div>}
+        }) : <div hidden={(search.length == 0) ? true : false} id="not_found" className="flex-col
+        border-2 border-t-0 first:border-t-0 bg-gray-800 border-background-shades-800 w-full text-lg rounded-b-2xl cursor-pointer 
+        p-2">{props.noFoundText}</div>}
       </div>
     </form>
 )};

@@ -1,0 +1,34 @@
+---
+import { Languages, type Language } from "../utils/types/Languages";
+
+const { language } = Astro.params as Language;
+---
+
+<form id="language_switch" class="">
+  <select name="language" id="language_selection" class="bg-background text-white cursor-pointer text-2xl">
+    {
+      Languages.map((languageElement) => {
+        return (
+          <option
+            value={languageElement.code}
+            selected={languageElement.code === language}
+          >
+            {languageElement.verbose}
+          </option>
+        );
+      })
+    }
+  </select>
+</form>
+<script>
+  const onChangeLanguage = (event: Event) => {
+    event.preventDefault();
+    const language = (event.target as HTMLSelectElement).value;
+    const url = new URL(window.location.href);
+    window.location.replace(url.href.replace(/\/[a-z]{2}\//, `/${language}/`));
+    return null;
+  };
+  document
+    .getElementById("language_selection")
+    ?.addEventListener("change", onChangeLanguage);
+</script>

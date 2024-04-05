@@ -8,10 +8,14 @@ import Footer from "../../Components/Footer.astro";
 
 import BaseHead from "../../Components/BaseHead.astro";
 
+import type { Language } from '../../utils/types/Languages';
+
+import { contentText } from "../../utils/languageText"
+
 export const getStaticPaths = (() => {
   return [
     { params: {language: "en"}},
-    { params: {language: "ua"}}
+    { params: {language: "ua"}},
   ];
 });
 
@@ -20,11 +24,10 @@ import { filterPosts } from "../../utils/filterPosts";
 const allPosts = await Astro.glob("../../content/posts/*.md");
 const formattedPosts = filterPosts(allPosts, { limit: 6, sortByDate: true });
 
-
-const { language } = Astro.params;
+const { language } = Astro.params as Language;
 ---
 
-<html lang="en">
+<html lang={language}>
   <head>
     <BaseHead />
     <title>Blog | Land Maze</title>
@@ -36,7 +39,7 @@ const { language } = Astro.params;
     <span
       class="my-10 xl:text-6xl md:text-4xl text-3xl text-center w-auto sm:block hidden decoration-dotted opacity-80"
       style="text-decoration: underline overline dashed; text-underline-offset: 24px;"
-      >Main tags</span
+      >{contentText[language].main_tags}</span
     >
     <div
       id="filter-tags"
@@ -52,7 +55,7 @@ const { language } = Astro.params;
     <span
       class="my-10 xl:text-5xl text-3xl w-auto block text-center decoration-dotted opacity-80"
       style="text-decoration: underline overline dashed; text-underline-offset: 24px;"
-      >Recent posts</span
+      >{contentText[language].recent_posts}</span
     >
 
     <div class="grid md:grid-cols-2 grid-cols-1 xl:gap-10">
