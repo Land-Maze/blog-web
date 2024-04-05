@@ -17,14 +17,9 @@ export const getStaticPaths = (() => {
 
 import { filterPosts } from "../../utils/filterPosts";
 
-const allPosts = await Astro.glob("../../**/*.md");
+const allPosts = await Astro.glob("../../content/posts/*.md");
 const formattedPosts = filterPosts(allPosts, { limit: 6, sortByDate: true });
 
-import { getCollection } from "astro:content";
-const postsEntries = await getCollection('posts');
-  console.log(postsEntries.map(entry => ({
-    params: { slug: entry.slug, language: "en" }, props: { entry },
-  })));
 
 const { language } = Astro.params;
 ---
@@ -69,6 +64,9 @@ const { language } = Astro.params;
             tags={post.frontmatter.tags}
             date={post.frontmatter.date}
             image={post.frontmatter.image}
+            link={
+              `/${post.frontmatter.language}/posts/${post.file.split("/").pop()?.split(".")[0].toLowerCase()}`
+            }
             />
         ))
       }

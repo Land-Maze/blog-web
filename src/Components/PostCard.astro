@@ -6,6 +6,7 @@ interface Props{
     image: string;
     tags: string[];
     style?: string;
+    link?: string;
 }
 
 import Tag from "./Tag.astro";
@@ -14,15 +15,15 @@ import Link from './Link.astro'
 import { colorPickerLetter } from '../utils/colorPickerLetter'
 import { colors } from '../utils/colors'
 
-const { title, date, description, image, tags, style } = Astro.props as Props;
+const { title, date, description, image, tags, style, link } = Astro.props as Props;
 ---
 
 <article class={"post p-2.5 h-fit flex flex-col self-center" + ' ' + style}>
-    <Link href="#" rel="noopener" target='_blank' style="text-center my-1.5 text-2xl" icon={true}>
+    <Link href={link ?? "#"} rel="noopener" target='_blank' style="text-center my-1.5 text-2xl" icon={true}>
         <img src={image} class="w-full h-48 object-cover rounded-3xl mb-2"/>
         <span class="">{title}</span>
     </Link>
-    <span class="md:text-xs text-2xs text-accent opacity-50">{date}</span>
+    <span class="md:text-xs text-2xs text-accent opacity-50">{new Date(date).toDateString()}</span>
     <p class="overflow-hidden text-ellipsis line-clamp-2 opacity-70 contr">{description}</p>
     <div class="flex flex-wrap gap-2 mt-2">
         {tags.map(tag => (
