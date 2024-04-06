@@ -1,17 +1,21 @@
 ---
-language: 'ua'
+language: "ua"
 layout: "../../layouts/post.astro"
-title: 'Лінійна алгебра'
-image: '/images/dummyData_4.jpg'
-description: 'How complex numbers can be implemented in matrices'
-tags: ['Math', 'Research', 'Data Science']
+title: "Лінійна алгебра"
+image: "/images/dummyData_4.jpg"
+description: "How complex numbers can be implemented in matrices"
+tags: ["Math", "Research", "Data Science"]
 date: 2022-01-15
 ---
+
 # Що таке лінійна алгебра?
+
 ## Вступ
+
 <div>
 
 Лінійна алгебра є однією з основних гілок математики, яка вивчає вектори, векторні простори, лінійні перетворення та системи лінійних рівнянь. Вона має широке застосування в різних галузях, включаючи фізику, інженерію, комп'ютерні науки та економіку.
+
 </div>
 
 ## Основні поняття
@@ -61,7 +65,9 @@ print(f"Детермінант матриці A: {det_A}")
 ```
 
 ## Приклад візуалізації
+
 <div class="flex justify-center items-center">
 <img src="https://upload.wikimedia.org/wikipedia/commons/b/bf/Matris.png" class="w-48">
 <p class="">Приклад як ми дізнаємось dot product</p>
 </div>
+

@@ -1,0 +1,34 @@
+---
+import { getCollection } from "astro:content";
+import { Languages } from "../../../utils/types/Languages";
+import type { Page, PaginateFunction } from "astro";
+
+interface PostData {
+  id: string;
+  slug: string;
+  body: string;
+  collection: string;
+  data: {
+    title: string;
+    language: string;
+    date: Date;
+    description: string;
+    image: string;
+    tags: string[];
+  };
+  render: () => Promise<string>;
+}
+
+export async function getStaticPaths({ paginate }: { paginate: PaginateFunction}) {
+  const posts = await getCollection("posts");
+  const languageCodes = Languages.map((language) => language.code);
+  return languageCodes.flatMap((language) => {
+    return paginate(posts, {
+      params: { language },
+      pageSize: 6,
+    })
+  })
+}
+
+const { page } = Astro.props as unknown as { page: Page<PostData> };
+---

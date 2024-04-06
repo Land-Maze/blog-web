@@ -8,16 +8,13 @@ import Footer from "../../Components/Footer.astro";
 
 import BaseHead from "../../Components/BaseHead.astro";
 
-import type { Language } from '../../utils/types/Languages';
+import type { Language } from "../../utils/types/Languages";
 
-import { contentText } from "../../utils/languageText"
+import { contentText } from "../../utils/languageText";
 
-export const getStaticPaths = (() => {
-  return [
-    { params: {language: "en"}},
-    { params: {language: "ua"}},
-  ];
-});
+export const getStaticPaths = () => {
+  return [{ params: { language: "en" } }, { params: { language: "ua" } }];
+};
 
 import { filterPosts } from "../../utils/filterPosts";
 
@@ -60,18 +57,18 @@ const { language } = Astro.params as Language;
 
     <div class="grid md:grid-cols-2 grid-cols-1 xl:gap-10">
       {
-        formattedPosts.slice(0, 6).map((post) => (
-          <Post
-            title={post.frontmatter.title}
-            description={post.frontmatter.description}
-            tags={post.frontmatter.tags}
-            date={post.frontmatter.date}
-            image={post.frontmatter.image}
-            link={
-              `/${post.frontmatter.language}/posts/${post.file.split("/").pop()?.split(".")[0].toLowerCase()}`
-            }
+        formattedPosts
+          .slice(0, 6)
+          .map((post) => (
+            <Post
+              title={post.frontmatter.title}
+              description={post.frontmatter.description}
+              tags={post.frontmatter.tags}
+              date={post.frontmatter.date}
+              image={post.frontmatter.image}
+              link={`/${post.frontmatter.language}/posts/${post.file.split("/").pop()?.split(".")[0].toLowerCase()}`}
             />
-        ))
+          ))
       }
     </div>
     <Footer />
