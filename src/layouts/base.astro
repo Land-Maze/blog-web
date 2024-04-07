@@ -1,0 +1,31 @@
+---
+import "../css/index.css";
+import "../css/_base.css";
+import Header from "../Components/Header.astro";
+import Footer from "../Components/Footer.astro";
+
+import BaseHead from "../Components/BaseHead.astro";
+import type { Language } from "../utils/types/Languages";
+
+interface Props extends Language{
+  title: string;
+}
+
+const { title, language }: Props = Astro.props;
+---
+
+<html lang={language}>
+  <head>
+    <BaseHead />
+    <title>{title} | Land Maze</title>
+  </head>
+  <body
+    class="bg-background text-text selection:bg-accent selection:text-black p-10 pt-8 2xl:w-pagemax 2xl:m-auto font-mono"
+  >
+    <Header />
+    
+    <slot />
+
+    <Footer />
+  </body>
+</html>

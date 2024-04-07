@@ -10,15 +10,16 @@ import Link from "../Components/Link.astro"
       <meta charset="UTF-8" />
       <meta name="generator" content={Astro.generator} />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>Blog | Land Maze</title>
+      <title>404 | Land Maze</title>
     </head>
     <body
       class="bg-background text-text selection:bg-accent selection:text-black p-10 pt-8 2xl:w-pagemax 2xl:m-auto font-mono flex flex-col items-center"
     >
-    <div class="text-center m-auto">
+    <div class="text-center m-auto flex flex-col">
         <span class="text-3xl font-light mb-4 block">Sry :3</span>
         <span class="text-xl font-bold mb-4 block">Page does not exist</span>
-        <Link href="/" style="gradient-text uppercase hover:scale-125" target="_self" rel="">Go back to home</Link>
+        <Link href="/" style="gradient-text uppercase hover:scale-125" target="_self" rel="">--> Go to home</Link>
+        <Link href="javascript:history.back(-1)" style="gradient-text uppercase hover:scale-125 mt-2" target="_self" rel="">--> Go back</Link>
     </div>
     </body>
   </html>

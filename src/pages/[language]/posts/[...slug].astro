@@ -1,12 +1,26 @@
 ---
+// ---------- Astro Collection API ----------
 import { getCollection } from "astro:content";
 
+// ---------- Types ----------
+import { Languages } from "../../../utils/types/Languages";
+
+// ---------- Constants ----------
+
+// ---------- Astro Static Router API ----------
 export async function getStaticPaths() {
   const postsEntries = await getCollection("posts");
-  return postsEntries.map((entry) => ({
-    params: { slug: entry.slug, language: entry.data.language },
-    props: { entry },
-  }));
+  const languageCodes = Languages.map((language) => language.code);
+  return languageCodes.flatMap((language) =>
+    postsEntries.map((entry) => ({
+      params: { slug: entry.slug, language },
+      props: { entry },
+    }))
+  );
+  // return postsEntries.map((entry) => ({
+  //   params: { slug: entry.slug, language: entry.data.language },
+  //   props: { entry },
+  // }));
 }
 
 const { entry } = Astro.props;

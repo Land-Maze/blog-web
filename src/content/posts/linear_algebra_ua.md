@@ -1,5 +1,5 @@
 ---
-language: "ua"
+language: "uk"
 layout: "../../layouts/post.astro"
 title: "Лінійна алгебра"
 image: "/images/dummyData_4.jpg"

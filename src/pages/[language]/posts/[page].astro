@@ -1,34 +1,67 @@
 ---
+// ---------- Astro content API ----------
 import { getCollection } from "astro:content";
-import { Languages } from "../../../utils/types/Languages";
+
+// ---------- Components ----------
+import PostCard from "../../../Components/PostCard.astro";
+import PaginateControl from "../../../Components/PaginateControl.astro";
+
+// ---------- Types ----------
+import { Languages, type LanguageCode } from "../../../utils/types/Languages";
+import type { PostCollectionElement } from "../../../utils/types/PostData";
+
+// ---------- Astro utils ----------
 import type { Page, PaginateFunction } from "astro";
 
-interface PostData {
-  id: string;
-  slug: string;
-  body: string;
-  collection: string;
-  data: {
-    title: string;
-    language: string;
-    date: Date;
-    description: string;
-    image: string;
-    tags: string[];
-  };
-  render: () => Promise<string>;
-}
+// ---------- Astro layout ----------
+import BaseLayout from "../../../layouts/base.astro";
+
+// ---------- Astro path ----------
 
 export async function getStaticPaths({ paginate }: { paginate: PaginateFunction}) {
   const posts = await getCollection("posts");
+
+  posts.sort((a, b) => {
+    return new Date(b.data.date).getTime() - new Date(a.data.date).getTime();
+  });
+
   const languageCodes = Languages.map((language) => language.code);
   return languageCodes.flatMap((language) => {
     return paginate(posts, {
       params: { language },
-      pageSize: 6,
+      pageSize: 1,
     })
   })
 }
 
-const { page } = Astro.props as unknown as { page: Page<PostData> };
+// ---------- Astro props ----------
+
+const { page, language } = Astro.props as unknown as { page: Page<PostCollectionElement> } & {language: LanguageCode};
 ---
+
+<BaseLayout title={`Page ${page.currentPage}`}, language={language}>
+  <PaginateControl
+    page={page}
+    language={language}
+    />
+    <div class="grid md:grid-cols-2 grid-cols-1 xl:gap-10">
+      {
+        page.data.map((post) => (
+          <PostCard
+          title={post.data.title}
+          description={post.data.description}
+          tags={post.data.tags}
+          image={post.data.image}
+          link={`/${language}/posts/${post.slug}`}
+          date={String(post.data.date)}
+          />
+        ))
+      }
+  </div>
+  <PaginateControl
+    page={page}
+    language={language}
+    />
+
+  
+</BaseLayout>

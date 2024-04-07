@@ -1,0 +1,47 @@
+---
+// ---------- Astro Pagination Control API ----------
+import type { Page } from 'astro';
+
+// ---------- Types ----------
+import type { LanguageCode } from '../utils/types/Languages';
+import type { PostData, PostCollectionElement } from "../utils/types/PostData";
+
+interface Props {
+  language: LanguageCode;
+  page: Page<PostCollectionElement>
+}
+
+// ---------- Props ----------
+const { language, page } = Astro.props;
+
+// ---------- Constants ----------
+
+---
+
+<div id="paginate-control" class="flex justify-center mt-10">
+  <a href={`/${language}/posts/1`} class={"mx-2 px-4 py-2 text-2xl " + (page.currentPage === 1 ? "underline text-accent" : " ")}>1</a>
+  { (page.currentPage > 3 && page.lastPage > 4) &&
+      <span class="mx-2 px-4 py-2 text-2xl">...</span>
+  }
+  
+  {
+    (page.currentPage > 2) &&
+      <a href={page.url.prev} class="mx-2 px-4 py-2 text-2xl">{page.currentPage - 1}</a>
+  }
+
+  {
+    (page.currentPage > 1) &&
+      <span class="mx-2 px-4 py-2 text-2xl underline text-accent">{page.currentPage}</span>
+  }
+
+  {
+    (page.currentPage < page.lastPage - 1) &&
+      <a href={page.url.next} class="mx-2 px-4 py-2 text-2xl">{page.currentPage + 1}</a>
+  }
+
+  {
+    (page.currentPage < page.lastPage - 1 && page.lastPage >= 4) &&
+      <span class="mx-2 px-4 py-2 text-2xl">...</span>
+  }
+  <a href={`/${language}/posts/${page.lastPage}`} class={"mx-2 px-4 py-2 text-2xl " + (page.currentPage === page.lastPage ? "underline text-accent" : " ")}>{page.lastPage}</a>
+</div>

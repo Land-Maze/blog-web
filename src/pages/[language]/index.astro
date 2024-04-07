@@ -1,39 +1,32 @@
 ---
-import "../../css/index.css";
-import "../../css/_base.css";
-import Header from "../../Components/Header.astro";
+// ---------- Astro layout ----------
+import BaseLayout from "../../layouts/base.astro";
+
+// ---------- Components ----------
 import Tag from "../../Components/Tag.astro";
 import Post from "../../Components/PostCard.astro";
-import Footer from "../../Components/Footer.astro";
 
-import BaseHead from "../../Components/BaseHead.astro";
-
-import type { Language } from "../../utils/types/Languages";
-
+// ---------- Utils ----------
+import { type Language, Languages } from "../../utils/types/Languages";
 import { contentText } from "../../utils/languageText";
-
-export const getStaticPaths = () => {
-  return [{ params: { language: "en" } }, { params: { language: "ua" } }];
-};
-
 import { filterPosts } from "../../utils/filterPosts";
 
+// ---------- Astro path ----------
+export const getStaticPaths = () => {
+  return Languages.map((lang) => ({ params: { language: lang.code } }));
+}
+// ---------- Post formating ----------
 const allPosts = await Astro.glob("../../content/posts/*.md");
 const formattedPosts = filterPosts(allPosts, { limit: 6, sortByDate: true });
 
+// ---------- Astro props ----------
 const { language } = Astro.params as Language;
+
+// ------------------------------
 ---
 
-<html lang={language}>
-  <head>
-    <BaseHead />
-    <title>Blog | Land Maze</title>
-  </head>
-  <body
-    class="bg-background text-text selection:bg-accent selection:text-black p-10 pt-8 2xl:w-pagemax 2xl:m-auto font-mono"
-  >
-    <Header />
-    <span
+<BaseLayout language={language} title="Home">
+  <span
       class="my-10 xl:text-6xl md:text-4xl text-3xl text-center w-auto sm:block hidden decoration-dotted opacity-80"
       style="text-decoration: underline overline dashed; text-underline-offset: 24px;"
       >{contentText[language].main_tags}</span
@@ -66,11 +59,9 @@ const { language } = Astro.params as Language;
               tags={post.frontmatter.tags}
               date={post.frontmatter.date}
               image={post.frontmatter.image}
-              link={`/${post.frontmatter.language}/posts/${post.file.split("/").pop()?.split(".")[0].toLowerCase()}`}
+              link={`/${language}/posts/${post.file.split("/").pop()?.split(".")[0].toLowerCase()}`}
             />
           ))
       }
     </div>
-    <Footer />
-  </body>
-</html>
+</BaseLayout>
