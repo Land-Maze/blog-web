@@ -29,6 +29,7 @@ export async function getStaticPaths({ paginate }: { paginate: PaginateFunction}
   return languageCodes.flatMap((language) => {
     return paginate(posts, {
       params: { language },
+      props: { language },
       pageSize: 1,
     })
   })
