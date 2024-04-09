@@ -1,0 +1,14 @@
+---
+import BaseLayout from "../../layouts/base.astro";
+import { Languages } from "../../utils/types/Languages";
+
+export const getStaticPaths = () => {
+  return Languages.map((lang) => {
+    return {
+      params: { language: lang.code },
+    };
+  });
+};
+---
+
+<BaseLayout />
