@@ -2,7 +2,9 @@
 language: "uk"
 layout: "../../layouts/post.astro"
 title: "Лінійна алгебра"
-image: "/images/dummyData_4.jpg"
+image:
+  src: "/images/dummyData_4.jpg"
+  alt: "Woman working on the whiteboard"
 description: "How complex numbers can be implemented in matrices"
 tags: ["Math", "Research", "Data Science"]
 date: 2022-01-15

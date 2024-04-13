@@ -9,15 +9,15 @@ import type { Language } from "../utils/types/Languages";
 
 interface Props extends Language{
   title: string;
+  description: string;
 }
 
-const { title, language }: Props = Astro.props;
+const { title, description, language }: Props = Astro.props;
 ---
 
 <html lang={language}>
   <head>
-    <BaseHead />
-    <title>{title} | Land Maze</title>
+    <BaseHead title={title} description={description} robots={false}/>
   </head>
   <body
     class="bg-background text-text selection:bg-accent selection:text-black p-10 pt-8 2xl:w-pagemax 2xl:m-auto font-mono"

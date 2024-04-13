@@ -1,6 +1,6 @@
 ---
 import BaseLayout from "../../layouts/base.astro";
-import { Languages } from "../../utils/types/Languages";
+import { Languages, type Language } from "../../utils/types/Languages";
 
 export const getStaticPaths = () => {
   return Languages.map((lang) => {
@@ -9,6 +9,8 @@ export const getStaticPaths = () => {
     };
   });
 };
+
+const { language } = Astro.params as Language;
 ---
 
-<BaseLayout />
+<BaseLayout title="About" description="About me page" language={language}/>

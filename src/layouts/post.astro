@@ -7,16 +7,13 @@ import BaseHead from "../Components/BaseHead.astro";
 import type { MarkdownLayoutProps } from "astro";
 import type { PostDataType } from "../utils/types/MarkDown";
 
-interface Props extends MarkdownLayoutProps<PostDataType> {
-  
-}
-const { frontmatter, url } = Astro.props;
+interface Props extends MarkdownLayoutProps<PostDataType>{}
+const { frontmatter }: Props = Astro.props;
 ---
 <html lang="en">
   <head>
-    <BaseHead />
-    <link rel="canonical" href={ new URL(url!, Astro.site).pathname } />
-    <title>{ frontmatter.title } | Land Maze</title>
+    <BaseHead title={frontmatter.title} description={frontmatter.description} robots={false} frontmatter={frontmatter}/>
+    <link rel="canonical" href={ new URL( frontmatter.url!, Astro.site).pathname } />
   </head>
   <body class="bg-background text-text selection:bg-accent selection:text-black p-10 pt-8 2xl:w-pagemax 2xl:m-auto font-mono">
     <Header />

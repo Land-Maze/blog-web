@@ -1,5 +1,17 @@
 ---
+import type { MarkdownLayoutProps } from "astro"
+import type { PostDataType } from "../utils/types/MarkDown"
+import Seo from "./Seo.astro"
 
+
+interface Props {
+  title: string
+  description: string
+  robots: boolean
+  frontmatter?: PostDataType
+}
+
+const { title, description, frontmatter, robots }: Props = Astro.props
 ---
 
 <meta charset="UTF-8" />
@@ -8,10 +20,19 @@
 <meta name="description" content="Land Maze blog" />
 <meta name="author" content="Timur Dzhesur" />
 <meta
-  name="keywords"
-  content="blog, web development, machine learning, research, math, development, programming"
+name="keywords"
+content="blog, web development, machine learning, research, math, development, programming"
 />
+
+<title>{title} | Land Maze</title>
+
+<Seo 
+title={title} description={description} 
+url={Astro.url} image={frontmatter?.image}
+frontmatter={frontmatter}
+robots={robots}
+/>
+
 <link rel="sitemap" href="/sitemap-index.xml" />
 <!-- Favicon -->
 <link rel="icon" href="https://avatars.githubusercontent.com/u/61432929" />
-<meta name="robots" content="index, follow" />

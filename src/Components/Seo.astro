@@ -1,0 +1,64 @@
+---
+import type { MarkdownLayoutProps } from "astro"
+import siteData from "../utils/data/siteData.json"
+import {jsonLDGenerator} from "../utils/jsonLD"
+import type { PostDataType } from "../utils/types/MarkDown"
+
+interface Props {
+  title: string,
+  description: string,
+  url: typeof Astro.url,
+  image?: { src: string, alt: string },
+  frontmatter?: PostDataType,
+  robots: boolean,
+}
+
+const {
+  title,
+  description,
+  url,
+  image,
+  frontmatter,
+  robots,
+}: Props = Astro.props
+
+const jsonLD = jsonLDGenerator({
+  type: frontmatter ? "post" : "page",
+  post: frontmatter,
+  url: url.toString(),
+})
+---
+
+<!-- SEO -->
+<link rel="canonical" href={url.toString()} />
+
+<!-- Open Graph -->
+<meta property="og:site_name" content="Timur Dzhesur's blog" />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+
+<meta property="og:url" content={url.toString()} />
+
+<meta property="og:image:secure_url" content={image?.src || siteData.image.src} />
+<meta property="og:image" content={image?.src || siteData.image.src} />
+<meta property="og:image:alt" content={image?.alt || siteData.image.alt} />
+
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="600" />
+
+<!-- Twitter -->
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:card" content="summary_large_image" />
+
+<meta name="twitter:image" content={image?.src || siteData.image.src} />
+<meta name="twitter:image:alt" content={title} />
+
+<meta name="twitter:domain" content={import.meta.env.SITE} />
+
+<!-- Robots -->
+{robots && <meta name="robots" content="noindex, nofollow" />}
+
+<!-- JSON LD -->
+<Fragment set:html={jsonLD} />

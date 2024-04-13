@@ -3,7 +3,7 @@ export type PostDataType = {
   date: string;
   description: string;
   image: {
-      url: string;
+      src: string;
       alt: string;
   };
   tags: string[];

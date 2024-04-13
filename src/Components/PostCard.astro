@@ -3,7 +3,10 @@ interface Props{
     title: string;
     date: string;
     description: string;
-    image: string;
+    image: {
+        src: string;
+        alt: string;
+    };
     tags: string[];
     style?: string;
     link?: string;
@@ -22,7 +25,7 @@ const formattedDate = `${convertedDate.toLocaleString('default', { month: 'short
 
 <article class={"post p-2.5 h-fit flex flex-col self-center" + ' ' + style}>
     <Link href={link ?? "#"} rel="noopener" target="_self" style="text-center my-1.5 text-2xl" icon={true}>
-        <img src={image} class="w-full h-48 object-cover rounded-3xl mb-2"/>
+        <img src={image.src} class="w-full h-48 object-cover rounded-3xl mb-2" alt={image.alt}/>
         <span class="">{title}</span>
     </Link>
     <span class="md:text-xs text-2xs text-accent opacity-50">{formattedDate}</span>
