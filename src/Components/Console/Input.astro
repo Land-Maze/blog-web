@@ -26,8 +26,10 @@ import { runBinary } from "../../utils/console/prompt";
     const command = input.split(" ")[0];
     const args = input.split(" ").slice(1);
 
-    if (input in runBinary)
-      output = runBinary[input as keyof typeof runBinary](command, args);
+    console.log(command, args)
+
+    if (command in runBinary)
+      output = runBinary[command as keyof typeof runBinary].main(args);
     else output = `command not found: ${command}`;
 
     return output;
@@ -46,11 +48,11 @@ import { runBinary } from "../../utils/console/prompt";
     if (!console) return;
     if (!output) return;
 
-    text.innerHTML = inputLine.innerHTML.replace("$ ", "> ");
+    text.innerHTML = '<span class="">'+inputLine.innerHTML.replace("$ ", "> ");
 
     let input = inputLine.innerHTML.replace("$ ", "");
 
-    text.innerHTML += "<br>" + `<span class="text-white">${runCommand(input)}</span>`;
+    text.innerHTML += "</span><br>" + `<span class="text-accent">${runCommand(input)}</span>`;
 
     output.innerHTML = "";
     output.appendChild(text);
