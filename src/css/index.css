@@ -40,3 +40,23 @@ body {
   background-image: linear-gradient(45deg, #f67e84, #9ba569);
 }
 
+/* Style the scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+/* Track (the area behind the scrollbar) */
+::-webkit-scrollbar-track {
+  background: black; /* Color of the track */
+}
+
+/* Handle (the draggable part of the scrollbar) */
+::-webkit-scrollbar-thumb {
+  background: #f67e8486; /* Color of the handle */
+  border-radius: 20px; /* Roundness of the handle */
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Color of the handle when hovered */
+}

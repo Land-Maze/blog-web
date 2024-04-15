@@ -1,0 +1,86 @@
+---
+import type { Language } from "../../utils/types/Languages";
+
+interface Props extends Language {}
+
+const { language }: Props = Astro.props;
+---
+
+<div id="input-bar" class="">
+  <div id="input-line" class="bg-black block">$ </div>
+</div>
+<script>
+import { runBinary } from "../../utils/console/prompt";
+
+  const resetLine = () => {
+    const inputLine = document.getElementById("input-line");
+
+    if (inputLine) {
+      inputLine.innerHTML = "$ ";
+    }
+  };
+
+  const runCommand = (input: string): string => {
+    let output = "";
+
+    const command = input.split(" ")[0];
+    const args = input.split(" ").slice(1);
+
+    if (input in runBinary)
+      output = runBinary[input as keyof typeof runBinary](command, args);
+    else output = `command not found: ${command}`;
+
+    return output;
+  }
+
+  const sendLine = () => {
+    const inputLine = document.getElementById("input-line");
+
+    const console = document.getElementById("console");
+
+    const output = document.getElementById("output");
+    const text = document.createElement("div");
+
+    if (!inputLine) return;
+    if (!text) return;
+    if (!console) return;
+    if (!output) return;
+
+    text.innerHTML = inputLine.innerHTML.replace("$ ", "> ");
+
+    let input = inputLine.innerHTML.replace("$ ", "");
+
+    text.innerHTML += "<br>" + `<span class="text-white">${runCommand(input)}</span>`;
+
+    output.innerHTML = "";
+    output.appendChild(text);
+  };
+
+  document.addEventListener("keydown", function (event) {
+    const inputLine = document.getElementById("input-line");
+
+    if (event.key === "Backspace") {
+      if (inputLine) {
+        if (inputLine.innerHTML.length > 2)
+          inputLine.innerHTML = inputLine.innerHTML.slice(0, -1);
+      }
+    } else if (event.key === "Enter") {
+      sendLine();
+      resetLine();
+    } else if (
+      !(
+        event.key.includes("Shift") ||
+        event.key.includes("Control") ||
+        event.key.includes("Alt") ||
+        event.key.includes("Meta")
+      )
+    ) {
+      if (inputLine) {
+        inputLine.innerHTML += `${event.key}`;
+      }
+    }
+  });
+</script>
+
+<style></style>
+

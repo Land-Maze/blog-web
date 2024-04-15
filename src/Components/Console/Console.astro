@@ -1,0 +1,23 @@
+---
+import type { Language } from "../../utils/types/Languages";
+import Input from "./Input.astro";
+
+interface Props extends Language {}
+
+const { language }: Props = Astro.props;
+---
+
+<div class="w-[800px] h-96 m-auto bg-black rounded-3xl p-8 border-white border">
+  <div
+    id="console"
+    class="flex flex-col text-[#4e9a06] overflow-y-auto overflow-x-hidden h-full w-full text-xl"
+  >
+    <Input language={language} />
+    <div
+      id="output"
+      class="text-white overflow-y-auto overflow-x-hidden h-full w-full text-xl break-words"
+    >
+    </div>
+  </div>
+</div>
+
