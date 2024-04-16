@@ -1,45 +1,79 @@
 ---
-import SearchBar from './SearchBar.jsx';
-import LanguageSwitch from './LanguageSwitch.astro';
-import { formatPosts } from '../utils/formatPosts.js';
-import { contentText } from '../utils/languageText';
+import SearchBar from "./SearchBar.jsx";
+import LanguageSwitch from "./LanguageSwitch.astro";
+import { formatPosts } from "../utils/formatPosts.js";
+import { contentText } from "../utils/languageText";
 const data = formatPosts(await Astro.glob("../**/*.md"));
-import type { Language } from '../utils/types/Languages';
+import type { Language } from "../utils/types/Languages";
 
 const { language } = Astro.params as Language;
 ---
 
 <header class="flex md:justify-between md:flex-row flex-col font-light">
-    <div class="flex items-center justify-center" id="header-info">
-        <img src="https://avatars.githubusercontent.com/u/61432929" alt="logo" id="header-avatar" class="size-16 xl:size-24 transform ease-linear duration-100 rounded-2xl">
-        <h1 id="header-username" class="font-mono xl:text-4xl xs:text-3xl text-2xl font-light xs:ml-8 ml-4 text-nowrap"> | Land Maze</h1>
-    </div>
-    <div class="flex items-center justify-center sm:flex-row flex-wrap gap-5 h-fit p-2 my-auto" id="header-links">
-        <a href={`/${language}/`} id="blog-link" class="hover:underline transition ease-linear duration-150 hover:scale-125 hover:text-primary md:text-xl xl:text-xl">{contentText[language].blog_link}</a>
-        <a href={`/${language}/about`} id="about-me-link" class="hover:underline transition ease-linear duration-150 hover:scale-125 hover:text-primary md:text-xl xl:text-xl">{contentText[language].about_me_link}</a>
-        <a href={`/${language}/posts/1`} id="all-posts-link" class="hover:underline transition ease-linear duration-150 hover:scale-125 hover:text-primary md:text-xl xl:text-xl">{contentText[language].all_posts_link}</a>
-        <SearchBar placeholder={contentText[language].search_placeholder} noFoundText={contentText[language].no_found_text} data={data} client:only="react"/>
-        <LanguageSwitch />
-    </div>
+  <div class="flex items-center justify-center" id="header-info">
+    <img
+      src="https://avatars.githubusercontent.com/u/61432929"
+      alt="logo"
+      id="header-avatar"
+      class="size-16 xl:size-24 transform ease-linear duration-100 rounded-2xl"
+    />
+    <h1
+      id="header-username"
+      class="font-mono xl:text-4xl xs:text-3xl text-2xl font-light xs:ml-8 ml-4 text-nowrap"
+    >
+      | Land Maze
+    </h1>
+  </div>
+  <div
+    class="flex items-center justify-center sm:flex-row flex-wrap gap-5 h-fit p-2 my-auto"
+    id="header-links"
+  >
+    <a
+      href={`/${language}/`}
+      id="blog-link"
+      class="hover:underline transition ease-linear duration-150 hover:scale-125 hover:text-primary md:text-xl xl:text-xl"
+      >{contentText[language].blog_link}</a
+    >
+    <a
+      href={`/${language}/about`}
+      id="about-me-link"
+      class="hover:underline transition ease-linear duration-150 hover:scale-125 hover:text-primary md:text-xl xl:text-xl"
+      >{contentText[language].about_me_link}</a
+    >
+    <a
+      href={`/${language}/posts/1`}
+      id="all-posts-link"
+      class="hover:underline transition ease-linear duration-150 hover:scale-125 hover:text-primary md:text-xl xl:text-xl"
+      >{contentText[language].all_posts_link}</a
+    >
+    <SearchBar
+      placeholder={contentText[language].search_placeholder}
+      noFoundText={contentText[language].no_found_text}
+      data={data}
+      client:only="react"
+    />
+    <LanguageSwitch />
+  </div>
 </header>
-<hr class="m-auto w-auto my-10 xl:mt-10 md:mt-8 mt-5"/>
+<hr class="m-auto w-auto my-10 xl:mt-10 md:mt-8 mt-5" />
 
 <script>
-    const currentLink = window.location.pathname;
-    if(new RegExp(/^\/(en|uk|[*])\/$/).test(currentLink)) {
-        const element = document.getElementById("blog-link")!;
-        element.classList.add("text-accent", "underline");
-        element.style.cursor = "default";
-        element.style.pointerEvents = "none";
-    } else if(new RegExp(/^\/[*]\/about$/).test(currentLink)) {
-        const element = document.getElementById("about-me-link")!;
-        element.classList.add("text-accent", "underline");
-        element.style.cursor = "default";
-        element.style.pointerEvents = "none";
-    } else if(new RegExp(/\/[A-Za-z]+\/posts\/\d/i).test(currentLink)) {
-        const element = document.getElementById("all-posts-link")!;
-        element.classList.add("text-accent", "underline");
-        element.style.cursor = "default";
-        element.style.pointerEvents = "none";
-    }
+  const currentLink = window.location.pathname;
+  if (new RegExp(/^\/(en|uk|[*])\/$/).test(currentLink)) {
+    const element = document.getElementById("blog-link")!;
+    element.classList.add("text-accent", "underline");
+    element.style.cursor = "default";
+    element.style.pointerEvents = "none";
+  } else if (new RegExp(/^\/[*]\/about$/).test(currentLink)) {
+    const element = document.getElementById("about-me-link")!;
+    element.classList.add("text-accent", "underline");
+    element.style.cursor = "default";
+    element.style.pointerEvents = "none";
+  } else if (new RegExp(/\/[A-Za-z]+\/posts\/\d/i).test(currentLink)) {
+    const element = document.getElementById("all-posts-link")!;
+    element.classList.add("text-accent", "underline");
+    element.style.cursor = "default";
+    element.style.pointerEvents = "none";
+  }
 </script>
+
