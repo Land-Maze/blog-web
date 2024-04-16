@@ -7,37 +7,45 @@ import BaseHead from "../Components/BaseHead.astro";
 import type { MarkdownLayoutProps } from "astro";
 import type { PostDataType } from "../utils/types/MarkDown";
 
-interface Props extends MarkdownLayoutProps<PostDataType>{}
+interface Props extends MarkdownLayoutProps<PostDataType> {}
 const { frontmatter }: Props = Astro.props;
 ---
+
 <html lang="en">
   <head>
-    <BaseHead title={frontmatter.title} description={frontmatter.description} robots={false} frontmatter={frontmatter}/>
-    <link rel="canonical" href={ new URL( frontmatter.url!, Astro.site).pathname } />
+    <BaseHead
+      title={frontmatter.title}
+      description={frontmatter.description}
+      robots={false}
+      frontmatter={frontmatter}
+    />
+    <link
+      rel="canonical"
+      href={new URL(frontmatter.url!, Astro.site).pathname}
+    />
   </head>
-  <body class="bg-background text-text selection:bg-accent selection:text-black p-10 pt-8 2xl:w-pagemax 2xl:m-auto font-mono">
+  <body
+    class="bg-background text-text selection:bg-accent selection:text-black p-10 pt-8 2xl:w-pagemax 2xl:m-auto font-mono"
+  >
     <Header />
 
-    <article class="
-    prose-h1:text-center prose-h1:text-3xl prose-h1:underline prose-h1:font-heading prose-h1:font-bold
-    prose-h1:text-accent
-
+    <article
+      class="prose-h1:text-center prose-h1:text-3xl prose-h1:underline prose-h1:font-heading prose-h1:font-bold
+    prose-h1:text-accent prose-h1:my-4
     prose-h2:italic prose-h2:font-heading prose-h2:text-2xl prose-h2:font-normal
     prose-h2:text-accent prose-h2:text-center prose-h2:mt-2
-
     prose-h3:font-bold prose-h3:font-mono prose-h3:text-lg
     prose-h3:text-accent
-
-    prose-p:ml-4 prose-p:font-light prose-p:font-body 
-
+    prose-img:border-2 prose-img:border-primary prose-img:rounded prose-img:my-4
+    prose-p:ml-4 prose-p:font-light prose-p:font-body prose-p:text-lg
+    prose-code:font-mono prose-code:text-primary
     prose-li:font-light prose-li:ml-8 prose-li:font-body prose-li:before:content-['>'] prose-li:before:mr-2 prose-li:before:ml-[-1rem] prose-li:before:text-accent prose-li:before:font-bold prose-li:before:font-heading
-
-    prose-pre:border-2 prose-pre:border-dashed prose-pre:border-accent prose-pre:rounded 
-    prose-pre:font-mono prose-pre:p-4 prose-pre:m-4
-    ">
+    prose-pre:border-2 prose-pre:border-dashed prose-pre:border-primary prose-pre:rounded
+    prose-pre:font-mono prose-pre:p-4 prose-pre:m-4"
+    >
       <slot />
     </article>
-    
+
     <Footer />
   </body>
 </html>

@@ -17,4 +17,10 @@ export const runBinary = {
     },
     help: "Show the current version of the website",
   },
+  "addition": {
+    main: (agrs: string[]) => {
+      return agrs.map((arg) => parseInt(arg)).reduce((a, b) => a + b, 0).toString();
+    },
+    help: "Add numbers together, separated by spaces<br>",
+  }
 }
